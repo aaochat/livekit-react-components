@@ -85,11 +85,13 @@ export function VideoConference({
   };
 
   const layoutContext = useCreateLayoutContext();
+
   const screenShareTracks = tracks
     .filter(isTrackReference)
     .filter((track) => track.publication.source === Track.Source.ScreenShare);
 
   const focusTrack = usePinnedTracks(layoutContext)?.[0];
+
   const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
 
   React.useEffect(() => {
