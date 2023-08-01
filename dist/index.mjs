@@ -791,8 +791,8 @@ var SvgCameraDisabledIcon = (props) => /* @__PURE__ */ React27.createElement(
       d: "M14.6155 6.64973C14.6155 6.64973 14.6409 5.84659 14.6155 5.58451C14.4718 3.85986 13.3474 3.26807 11.1409 3.26807H5.80627C3.13476 3.26807 2.24707 4.15575 2.24707 6.82727V13.9457C2.24707 15.0109 2.56833 16.0846 3.40529 16.7694L3.9379 17.1498",
       stroke: "white",
       "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React27.createElement(
@@ -801,8 +801,8 @@ var SvgCameraDisabledIcon = (props) => /* @__PURE__ */ React27.createElement(
       d: "M14.7084 9.49878V13.9457C14.7084 16.6172 13.8207 17.5049 11.1492 17.5049H6.69385",
       stroke: "white",
       "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React27.createElement(
@@ -811,8 +811,8 @@ var SvgCameraDisabledIcon = (props) => /* @__PURE__ */ React27.createElement(
       d: "M19.1554 5.93958V13.6075C19.1554 15.0194 18.2085 15.5097 17.0588 14.6981L14.7085 13.0495",
       stroke: "white",
       "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React27.createElement(
@@ -821,8 +821,8 @@ var SvgCameraDisabledIcon = (props) => /* @__PURE__ */ React27.createElement(
       d: "M19.172 2.0929L2.26367 19.0012",
       stroke: "white",
       "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   )
 );
@@ -844,9 +844,9 @@ var SvgCameraIcon = (props) => /* @__PURE__ */ React28.createElement(
     {
       d: "M10.9042 17.5049H5.56116C2.88964 17.5049 2.00195 15.7295 2.00195 13.9457V6.82727C2.00195 4.15575 2.88964 3.26807 5.56116 3.26807H10.9042C13.5757 3.26807 14.4634 4.15575 14.4634 6.82727V13.9457C14.4634 16.6172 13.5673 17.5049 10.9042 17.5049Z",
       stroke: "white",
-      "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React28.createElement(
@@ -854,9 +854,9 @@ var SvgCameraIcon = (props) => /* @__PURE__ */ React28.createElement(
     {
       d: "M16.8136 14.6981L14.4634 13.0495V7.71495L16.8136 6.06638C17.9634 5.26324 18.9103 5.75358 18.9103 7.16543V13.6075C18.9103 15.0193 17.9634 15.5097 16.8136 14.6981Z",
       stroke: "white",
-      "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React28.createElement(
@@ -864,9 +864,9 @@ var SvgCameraIcon = (props) => /* @__PURE__ */ React28.createElement(
     {
       d: "M10.0333 9.54101C10.7336 9.54101 11.3014 8.97325 11.3014 8.27289C11.3014 7.57252 10.7336 7.00476 10.0333 7.00476C9.3329 7.00476 8.76514 7.57252 8.76514 8.27289C8.76514 8.97325 9.3329 9.54101 10.0333 9.54101Z",
       stroke: "white",
-      "stroke-width": "1.66",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   )
 );
@@ -888,9 +888,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M14.222 5.74004V5.48647C14.222 3.61847 12.709 2.10547 10.841 2.10547C8.97296 2.10547 7.45996 3.61847 7.45996 5.48647V9.71272",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -898,9 +898,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M8.33936 12.4091C8.95639 13.0937 9.85235 13.5163 10.8413 13.5163C12.7093 13.5163 14.2223 12.0033 14.2223 10.1353V9.71271",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -908,9 +908,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M6.42871 14.7419C7.5867 15.8154 9.13351 16.4747 10.8409 16.4747C14.4079 16.4747 17.3071 13.5755 17.3071 10.0085V8.57159",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -918,9 +918,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M4.375 8.57159V10.0085C4.375 10.9045 4.5525 11.7497 4.88215 12.5274",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -928,9 +928,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M17.6624 2.81549L4.02002 16.4663",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -938,9 +938,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M9.99561 2.95068V5.48643",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React29.createElement(
@@ -948,9 +948,9 @@ var SvgMicDisabledIcon = (props) => /* @__PURE__ */ React29.createElement(
     {
       d: "M10.8408 16.4747V19.0105",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   )
 );
@@ -972,9 +972,9 @@ var SvgMicIcon = (props) => /* @__PURE__ */ React30.createElement(
     {
       d: "M10.9049 13.3448C12.7729 13.3448 14.2859 11.8318 14.2859 9.96384V5.31496C14.2859 3.44696 12.7729 1.93396 10.9049 1.93396C9.03692 1.93396 7.52393 3.44696 7.52393 5.31496V9.96384C7.52393 11.8318 9.03692 13.3448 10.9049 13.3448Z",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React30.createElement(
@@ -982,9 +982,9 @@ var SvgMicIcon = (props) => /* @__PURE__ */ React30.createElement(
     {
       d: "M4.43896 8.40009V9.83701C4.43896 13.404 7.33817 16.3032 10.9051 16.3032C14.4721 16.3032 17.3713 13.404 17.3713 9.83701V8.40009",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React30.createElement(
@@ -992,9 +992,9 @@ var SvgMicIcon = (props) => /* @__PURE__ */ React30.createElement(
     {
       d: "M9.73047 5.67844C10.4912 5.39951 11.3195 5.39951 12.0803 5.67844",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React30.createElement(
@@ -1002,9 +1002,9 @@ var SvgMicIcon = (props) => /* @__PURE__ */ React30.createElement(
     {
       d: "M10.229 7.47034C10.677 7.35201 11.1419 7.35201 11.5899 7.47034",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   ),
   /* @__PURE__ */ React30.createElement(
@@ -1012,9 +1012,9 @@ var SvgMicIcon = (props) => /* @__PURE__ */ React30.createElement(
     {
       d: "M10.9048 16.3032V18.839",
       stroke: "white",
-      "stroke-width": "1.66129",
-      "stroke-linecap": "round",
-      "stroke-linejoin": "round"
+      strokeWidth: "1.66129",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
     }
   )
 );
@@ -3709,15 +3709,15 @@ function VideoConference(_a) {
         screenShareTracks: screenShareTracks.length
       }
     )),
-    /* @__PURE__ */ React90.createElement(ShareLink, { style: { display: widgetState.showChat == "show_invite" ? "flex" : "none" } }),
-    /* @__PURE__ */ React90.createElement(
+    showShareButton ? /* @__PURE__ */ React90.createElement(ShareLink, { style: { display: widgetState.showChat == "show_invite" ? "flex" : "none" } }) : /* @__PURE__ */ React90.createElement(React90.Fragment, null),
+    showParticipantButton ? /* @__PURE__ */ React90.createElement(
       Users,
       {
         style: { display: widgetState.showChat == "show_users" ? "flex" : "none" },
         onWaitingRoomChange: updateCount,
         setWaiting: setWaitingMessage
       }
-    ),
+    ) : /* @__PURE__ */ React90.createElement(React90.Fragment, null),
     waiting ? /* @__PURE__ */ React90.createElement(Toast, { className: "lk-toast-connection-state" }, /* @__PURE__ */ React90.createElement(UserToggle, null, waiting)) : /* @__PURE__ */ React90.createElement(React90.Fragment, null)
   ), /* @__PURE__ */ React90.createElement(RoomAudioRenderer, null), /* @__PURE__ */ React90.createElement(ConnectionStateToast, null));
 }
