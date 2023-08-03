@@ -5,7 +5,7 @@ import { Toast } from '../components';
 
 export function useGetLink() {
   const host = getHostUrl();
-  const link = `${host}/join/${useGetRoom().name}`;
+  const link = `${host}/meeting/${useGetRoom().name}`;
   return { link: link };
 }
 
@@ -18,12 +18,15 @@ export function getHostUrl() {
   return typeof window ? window.location.origin : '';
 }
 
+export function getToken() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('token');
+}
+
 export type User = {
   user_id: string;
   user_name: string;
   full_name: string;
-  designation: string;
-  ext_no: string;
   invited: boolean
 };
 
@@ -52,7 +55,7 @@ export function ShareLink({ ...props }: any) {
   async function searchUsers(key: string) {
     if (key) {
       const filteredData = users.filter(function (item) {
-        return (item.user_name.toLocaleLowerCase()).startsWith(key.toLocaleLowerCase());
+        return (item.full_name.toLocaleLowerCase()).startsWith(key.toLocaleLowerCase());
       });
       setSearched(filteredData)
     } else {
@@ -68,6 +71,7 @@ export function ShareLink({ ...props }: any) {
       },
       body: JSON.stringify({
         meeting_id: room.name,
+        token: getToken(),
       })
     };
     fetch(`${getHostUrl()}/api/get-users`, data).then(async (res) => {
@@ -106,6 +110,7 @@ export function ShareLink({ ...props }: any) {
         "users": JSON.stringify([user]), // body data type must match "Content-Type" header
         "message": link,
         "meeting_id": room.name,
+        "token": getToken(),
       })
     };
 
@@ -187,8 +192,8 @@ export function ShareLink({ ...props }: any) {
             return (
               <li key={index} className="lk-chat-entry">
                 <div>
-                  <span className="lk-message-body">{user.full_name} {user.ext_no ? ` - ${user.ext_no}` : ''}</span>
-                  <span className="lk-message-body lk-message-text">{user.designation}</span>
+                  <span className="lk-message-body">{user.full_name}</span>
+                  <span className="lk-message-body lk-message-text">{user.user_name}</span>
                 </div>
 
                 <button type="button" onClick={() => handleInvite(user)} className={"lk-button lk-chat-form-button" + (user.invited ? ' invited' : '')}>

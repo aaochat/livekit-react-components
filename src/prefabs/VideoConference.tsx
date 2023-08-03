@@ -85,11 +85,13 @@ export function VideoConference({
   };
 
   const layoutContext = useCreateLayoutContext();
+
   const screenShareTracks = tracks
     .filter(isTrackReference)
     .filter((track) => track.publication.source === Track.Source.ScreenShare);
 
   const focusTrack = usePinnedTracks(layoutContext)?.[0];
+
   const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
 
   React.useEffect(() => {
@@ -159,22 +161,38 @@ export function VideoConference({
             screenShareTracks={screenShareTracks.length}
           />
         </div>
-        <ShareLink style={{ display: widgetState.showChat == 'show_invite' ? 'flex' : 'none' }} />
-        <Users
-          style={{ display: widgetState.showChat == 'show_users' ? 'flex' : 'none' }}
-          onWaitingRoomChange={updateCount}
-          setWaiting={setWaitingMessage}
-        />
-        {waiting ? (
-          <Toast className="lk-toast-connection-state">
-            <UserToggle>{waiting}</UserToggle>
-          </Toast>
-        ) : (
-          <></>
-        )}
-      </LayoutContextProvider>
+
+        {
+          showShareButton ?
+            (
+              <ShareLink style={{ display: widgetState.showChat == 'show_invite' ? 'flex' : 'none' }} />
+            ) : (
+              <></>
+            )
+        }
+
+        {
+          showParticipantButton ? (
+            <Users
+              style={{ display: widgetState.showChat == 'show_users' ? 'flex' : 'none' }}
+              onWaitingRoomChange={updateCount}
+              setWaiting={setWaitingMessage}
+            />
+          ) : (<></>)
+        }
+
+        {
+          waiting ? (
+            <Toast className="lk-toast-connection-state">
+              <UserToggle>{waiting}</UserToggle>
+            </Toast>
+          ) : (
+            <></>
+          )
+        }
+      </LayoutContextProvider >
       <RoomAudioRenderer />
       <ConnectionStateToast />
-    </div>
+    </div >
   );
 }
