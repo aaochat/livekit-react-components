@@ -7,6 +7,7 @@ export declare function getHostUrl(): string;
 export declare function getToken(): string | null;
 export type User = {
     user_id: string;
+    contact_id: string;
     user_name: string;
     full_name: string;
     invited: boolean;

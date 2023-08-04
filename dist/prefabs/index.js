@@ -2950,7 +2950,9 @@ function ShareLink(_a) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          "users": JSON.stringify([user]),
+          "userId": user.contact_id,
+          // body data type must match "Content-Type" header
+          "userName": user.full_name,
           // body data type must match "Content-Type" header
           "message": link,
           "meeting_id": room.name,
