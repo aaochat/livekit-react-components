@@ -3289,7 +3289,7 @@ function ShareLink(_a) {
       fetch(`/api/invite-user`, data).then((res) => __async(this, null, function* () {
         if (res.ok) {
           user.invited = true;
-          const currentUserIndex = users.findIndex((item) => item.user_id === user.user_id);
+          const currentUserIndex = users.findIndex((item) => item.contact_id === user.contact_id);
           const updatedUser = __spreadProps(__spreadValues({}, users[currentUserIndex]), { invited: true });
           const newUsers = [
             ...users.slice(0, currentUserIndex),
@@ -3297,7 +3297,7 @@ function ShareLink(_a) {
             ...users.slice(currentUserIndex + 1)
           ];
           setUsers(newUsers);
-          const currentSearchedIndex = searched.findIndex((item) => item.user_id === user.user_id);
+          const currentSearchedIndex = searched.findIndex((item) => item.contact_id === user.contact_id);
           const updatedSearched = __spreadProps(__spreadValues({}, searched[currentSearchedIndex]), { invited: true });
           const newSearched = [
             ...searched.slice(0, currentSearchedIndex),
