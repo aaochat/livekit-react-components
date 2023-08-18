@@ -1,4 +1,4 @@
-import type { LocalAudioTrack, LocalVideoTrack } from 'livekit-client';
+import type { CreateLocalTracksOptions, LocalAudioTrack, LocalTrack, LocalVideoTrack } from 'livekit-client';
 import * as React from 'react';
 /** @public */
 export type LocalUserChoices = {
@@ -9,7 +9,7 @@ export type LocalUserChoices = {
     audioDeviceId: string;
 };
 /** @public */
-export type PreJoinProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit'> & {
+export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit' | 'onError'> {
     /** This function is called with the `LocalUserChoices` if validation is passed. */
     onSubmit?: (values: LocalUserChoices) => void;
     /**
@@ -25,7 +25,9 @@ export type PreJoinProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit'
     micLabel?: string;
     camLabel?: string;
     userLabel?: string;
-};
+}
+/** @alpha */
+export declare function usePreviewTracks(options: CreateLocalTracksOptions, onError?: (err: Error) => void): LocalTrack[] | undefined;
 /** @public */
 export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioTrack>(enabled: boolean, deviceId: string, kind: 'videoinput' | 'audioinput'): {
     selectedDevice: MediaDeviceInfo | undefined;
@@ -47,5 +49,5 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
  * ```
  * @public
  */
-export declare const PreJoin: ({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, ...htmlProps }: PreJoinProps) => React.JSX.Element;
+export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, ...htmlProps }: PreJoinProps): React.JSX.Element;
 //# sourceMappingURL=PreJoin.d.ts.map

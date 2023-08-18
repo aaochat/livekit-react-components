@@ -1,5 +1,4 @@
 import type { TrackIdentifier } from '@livekit/components-core';
-import { Track } from 'livekit-client';
 import * as React from 'react';
 import type { UseMediaTrackOptions } from './useMediaTrack';
 /**
@@ -9,7 +8,7 @@ export declare function useMediaTrackBySourceOrName(observerOptions: TrackIdenti
     publication: import("livekit-client").TrackPublication | undefined;
     isMuted: boolean | undefined;
     isSubscribed: boolean | undefined;
-    track: Track | undefined;
+    track: import("livekit-client").Track | undefined;
     elementProps: React.HTMLAttributes<HTMLElement>;
 };
 //# sourceMappingURL=useMediaTrackBySourceOrName.d.ts.map

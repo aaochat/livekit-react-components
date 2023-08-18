@@ -11,5 +11,5 @@ import type { ParticipantTileProps } from './ParticipantTile';
  * @see `ParticipantLoop` component
  * @public
  */
-export declare const ParticipantAudioTile: ({ participant, children, source, publication, disableSpeakingIndicator, onParticipantClick, ...htmlProps }: ParticipantTileProps) => React.JSX.Element;
+export declare function ParticipantAudioTile({ participant, children, source, publication, disableSpeakingIndicator, onParticipantClick, ...htmlProps }: ParticipantTileProps): React.JSX.Element;
 //# sourceMappingURL=ParticipantAudioTile.d.ts.map

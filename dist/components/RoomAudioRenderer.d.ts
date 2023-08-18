@@ -11,5 +11,5 @@ import * as React from 'react';
  * ```
  * @public
  */
-export declare const RoomAudioRenderer: () => React.JSX.Element;
+export declare function RoomAudioRenderer(): React.JSX.Element;
 //# sourceMappingURL=RoomAudioRenderer.d.ts.map

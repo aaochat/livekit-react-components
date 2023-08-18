@@ -11,12 +11,12 @@ export type ControlBarControls = {
     leaveButton?: string;
 };
 /** @public */
-export type ControlBarProps = React.HTMLAttributes<HTMLDivElement> & {
+export interface ControlBarProps extends React.HTMLAttributes<HTMLDivElement> {
     variation?: 'minimal' | 'verbose' | 'textOnly';
     controls?: ControlBarControls;
     waitingRoomCount: number;
     screenShareTracks?: number;
-};
+}
 /**
  * The ControlBar prefab component gives the user the basic user interface
  * to control their media devices and leave the room.

@@ -1,5 +1,5 @@
 import type { AudioCaptureOptions, RoomConnectOptions, RoomOptions, ScreenShareCaptureOptions, VideoCaptureOptions } from 'livekit-client';
-import { MediaDeviceFailure, Room } from 'livekit-client';
+import type { MediaDeviceFailure, Room } from 'livekit-client';
 import * as React from 'react';
 /** @public */
 export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onError'> {
@@ -66,11 +66,6 @@ export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivEleme
     room?: Room;
     simulateParticipants?: number | undefined;
 }
-/** @public */
-export declare function useLiveKitRoom(props: LiveKitRoomProps): {
-    room: Room | undefined;
-    htmlProps: React.HTMLAttributes<HTMLElement>;
-};
 /**
  * The LiveKitRoom component provides the room context to all its child components.
  * It is generally the starting point of your LiveKit app and the root of the LiveKit component tree.

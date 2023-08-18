@@ -3,5 +3,5 @@
  *
  * @public
  */
-export declare const useSpeakingParticipants: () => import("livekit-client").Participant[];
+export declare function useSpeakingParticipants(): import("livekit-client").Participant[];
 //# sourceMappingURL=useSpeakingParticipants.d.ts.map

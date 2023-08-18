@@ -1,4 +1,4 @@
-import type { GridLayout } from '@livekit/components-core/dist/helper/grid-layouts';
+import type { GridLayoutDefinition } from '@livekit/components-core';
 import * as React from 'react';
 /**
  * The useGridLayout hook tries to select the best layout to fit all tiles.
@@ -13,6 +13,6 @@ export declare function useGridLayout(
 gridElement: React.RefObject<HTMLDivElement>, 
 /** Count of tracks that should get layed out */
 trackCount: number): {
-    layout: GridLayout;
+    layout: GridLayoutDefinition;
 };
 //# sourceMappingURL=useGridLayout.d.ts.map

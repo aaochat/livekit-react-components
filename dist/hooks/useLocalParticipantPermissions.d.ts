@@ -1,3 +1,3 @@
 /** @public */
-export declare function useLocalParticipantPermissions(): import("livekit-client/dist/src/proto/livekit_models").ParticipantPermission | undefined;
+export declare function useLocalParticipantPermissions(): import("livekit-client/dist/src/proto/livekit_models_pb").ParticipantPermission | undefined;
 //# sourceMappingURL=useLocalParticipantPermissions.d.ts.map

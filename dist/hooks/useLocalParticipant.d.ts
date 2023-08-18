@@ -10,12 +10,14 @@ export interface UseLocalParticipantOptions {
  * The useLocalParticipant hook the state of the local participant.
  * @public
  */
-export declare const useLocalParticipant: (options?: UseLocalParticipantOptions) => {
+export declare function useLocalParticipant(options?: UseLocalParticipantOptions): {
     isMicrophoneEnabled: boolean;
     isScreenShareEnabled: boolean;
     isCameraEnabled: boolean;
     microphoneTrack: TrackPublication | undefined;
     cameraTrack: TrackPublication | undefined;
+    lastMicrophoneError: Error | undefined;
+    lastCameraError: Error | undefined;
     localParticipant: LocalParticipant;
 };
 //# sourceMappingURL=useLocalParticipant.d.ts.map

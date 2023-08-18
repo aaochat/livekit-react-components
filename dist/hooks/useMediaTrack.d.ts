@@ -1,6 +1,6 @@
-/// <reference types="react" />
 import type { VideoSource, AudioSource } from '@livekit/components-core';
 import type { Participant } from 'livekit-client';
+import type * as React from 'react';
 /** @public */
 export interface UseMediaTrackOptions {
     element?: React.RefObject<HTMLMediaElement>;
@@ -12,6 +12,6 @@ export declare function useMediaTrack(source: VideoSource | AudioSource, partici
     isMuted: boolean | undefined;
     isSubscribed: boolean | undefined;
     track: import("livekit-client").Track | undefined;
-    elementProps: import("react").HTMLAttributes<HTMLElement>;
+    elementProps: React.HTMLAttributes<HTMLElement>;
 };
 //# sourceMappingURL=useMediaTrack.d.ts.map

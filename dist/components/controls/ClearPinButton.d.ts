@@ -1,10 +1,7 @@
 import * as React from 'react';
 /** @public */
-export type ClearPinButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-/** @public */
-export declare function useClearPinButton(props: ClearPinButtonProps): {
-    buttonProps: React.HTMLAttributes<HTMLElement>;
-};
+export interface ClearPinButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+}
 /**
  * The ClearPinButton is a basic html button with the added ability to signal
  * the LiveKitRoom that it should display the grid view again.
