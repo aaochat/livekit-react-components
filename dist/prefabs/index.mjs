@@ -2830,7 +2830,7 @@ var ParticipantAudioTile = (_a) => {
 // src/prefabs/ShareLink.tsx
 function useGetLink() {
   const host = getHostUrl();
-  const link = `${host}/meeting/${useGetRoom().name}`;
+  const link = `${host}/${getDomainIdentifier()}/meeting/${useGetRoom().name}`;
   return { link };
 }
 function useGetRoom() {
@@ -2839,6 +2839,9 @@ function useGetRoom() {
 }
 function getHostUrl() {
   return typeof window ? window.location.origin : "";
+}
+function getDomainIdentifier() {
+  return typeof window ? window.location.href.split("/")[3] : "";
 }
 function getToken() {
   const urlParams = new URLSearchParams(window.location.search);
