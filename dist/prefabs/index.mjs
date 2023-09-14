@@ -3866,7 +3866,7 @@ function Users(_a) {
 
 // src/prefabs/VideoConference.tsx
 import { isEqualTrackRef, isTrackReference as isTrackReference4, log as log10, isWeb, setupParticipantName as setupParticipantName2 } from "@livekit/components-core";
-import { RoomEvent, ParticipantEvent, Track as Track11 } from "livekit-client";
+import { RoomEvent, Track as Track11 } from "livekit-client";
 function VideoConference(_a) {
   var _b = _a, {
     chatMessageFormatter
@@ -3903,10 +3903,6 @@ function VideoConference(_a) {
     ],
     { updateOnlyOn: [RoomEvent.ActiveSpeakersChanged], onlySubscribed: false }
   );
-  const room = useRoomContext();
-  room.on(ParticipantEvent.ParticipantMetadataChanged, (data) => {
-    console.log("data", data);
-  });
   const widgetUpdate = (state) => {
     log10.debug("updating widget state", state);
     console.log(state);

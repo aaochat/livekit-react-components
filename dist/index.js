@@ -4422,10 +4422,6 @@ function VideoConference(_a) {
     ],
     { updateOnlyOn: [import_livekit_client19.RoomEvent.ActiveSpeakersChanged], onlySubscribed: false }
   );
-  const room = useRoomContext();
-  room.on(import_livekit_client19.ParticipantEvent.ParticipantMetadataChanged, (data) => {
-    console.log("data", data);
-  });
   const widgetUpdate = (state) => {
     import_components_core52.log.debug("updating widget state", state);
     console.log(state);
