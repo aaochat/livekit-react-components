@@ -4,5 +4,5 @@ export interface UseRemoteParticipantOptions {
     updateOnlyOn?: ParticipantEvent[];
 }
 /** @public */
-export declare const useRemoteParticipant: (identity: string, options?: UseRemoteParticipantOptions) => RemoteParticipant | undefined;
+export declare function useRemoteParticipant(identity: string, options?: UseRemoteParticipantOptions): RemoteParticipant | undefined;
 //# sourceMappingURL=useRemoteParticipant.d.ts.map

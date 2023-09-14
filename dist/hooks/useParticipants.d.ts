@@ -16,5 +16,5 @@ export interface UseParticipantsOptions {
  * The useParticipants hook returns all participants (local and remote) of the current room.
  * @public
  */
-export declare const useParticipants: (options?: UseParticipantsOptions) => (import("livekit-client").RemoteParticipant | import("livekit-client").LocalParticipant)[];
+export declare function useParticipants(options?: UseParticipantsOptions): (import("livekit-client").RemoteParticipant | import("livekit-client").LocalParticipant)[];
 //# sourceMappingURL=useParticipants.d.ts.map

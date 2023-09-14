@@ -8,8 +8,8 @@ export declare function getDomainIdentifier(): string;
 export declare function getToken(): string | null;
 export type User = {
     user_id: string;
-    contact_id: string;
     user_name: string;
+    designation: string;
     full_name: string;
     invited: boolean;
 };

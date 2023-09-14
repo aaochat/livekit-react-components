@@ -7,6 +7,13 @@ export type ChatContextAction = {
     msg: 'show_invite';
 } | {
     msg: 'show_users';
+} | {
+    msg: 'hide_chat';
+} | {
+    msg: 'toggle_chat';
+} | {
+    msg: 'unread_msg';
+    count: number;
 };
 /** @internal */
 export type ChatContextType = {

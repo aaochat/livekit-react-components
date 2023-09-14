@@ -17,5 +17,5 @@ export interface UseRemoteParticipantsOptions {
  *
  * @public
  */
-export declare const useRemoteParticipants: (options?: UseRemoteParticipantsOptions) => RemoteParticipant[];
+export declare function useRemoteParticipants(options?: UseRemoteParticipantsOptions): RemoteParticipant[];
 //# sourceMappingURL=useRemoteParticipants.d.ts.map

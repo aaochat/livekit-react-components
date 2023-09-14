@@ -1,7 +1,11 @@
-import type { ReceivedChatMessage } from '@livekit/components-core';
+import type { ReceivedChatMessage, ChatMessage } from '@livekit/components-core';
 import * as React from 'react';
 /** @public */
 export type MessageFormatter = (message: string) => React.ReactNode;
+/** @public */
+export type MessageEncoder = (message: ChatMessage) => Uint8Array;
+/** @public */
+export type MessageDecoder = (message: Uint8Array) => ReceivedChatMessage;
 /**
  * ChatEntry composes the HTML div element under the hood, so you can pass all its props.
  * These are the props specific to the ChatEntry component:

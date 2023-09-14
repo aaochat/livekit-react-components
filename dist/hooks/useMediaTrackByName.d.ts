@@ -1,7 +1,10 @@
 /// <reference types="react" />
 import type { Participant } from 'livekit-client';
 import type { UseMediaTrackOptions } from './useMediaTrack';
-/** @public */
+/**
+ * @public
+ * @deprecated This function will be removed in a future version, use `useTrackByName` instead.
+ */
 export declare function useMediaTrackByName(name: string, participant?: Participant, options?: UseMediaTrackOptions): {
     publication: import("livekit-client").TrackPublication | undefined;
     isMuted: boolean | undefined;

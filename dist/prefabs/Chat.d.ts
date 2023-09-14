@@ -1,13 +1,18 @@
 import type { ChatMessage, ReceivedChatMessage } from '@livekit/components-core';
 import * as React from 'react';
-import type { MessageFormatter } from '../components/ChatEntry';
+import type { MessageDecoder, MessageEncoder, MessageFormatter } from '../components/ChatEntry';
 export type { ChatMessage, ReceivedChatMessage };
 /** @public */
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
     messageFormatter?: MessageFormatter;
+    messageEncoder?: MessageEncoder;
+    messageDecoder?: MessageDecoder;
 }
 /** @public */
-export declare function useChat(): {
+export declare function useChat(options?: {
+    messageEncoder?: MessageEncoder;
+    messageDecoder?: MessageDecoder;
+}): {
     send: ((message: string) => Promise<void>) | undefined;
     chatMessages: ReceivedChatMessage[];
     isSending: boolean;
@@ -24,5 +29,5 @@ export declare function useChat(): {
  * ```
  * @public
  */
-export declare function Chat({ messageFormatter, ...props }: ChatProps): React.JSX.Element;
+export declare function Chat({ messageFormatter, messageDecoder, messageEncoder, ...props }: ChatProps): React.JSX.Element;
 //# sourceMappingURL=Chat.d.ts.map
