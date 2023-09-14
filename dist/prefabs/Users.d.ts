@@ -3,7 +3,6 @@ import type { LocalUserChoices } from './PreJoin';
 /** @public */
 export interface UserProps extends React.HTMLAttributes<HTMLDivElement> {
     onWaitingRoomChange: (state: number) => void;
-    setWaiting: (state: string) => void;
 }
 export type UserDataProps = {
     /** The participants to loop over.

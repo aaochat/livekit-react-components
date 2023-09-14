@@ -4091,7 +4091,7 @@ function ControlBar(_a) {
       title: !isScreenShareEnabled && screenShareTracks !== 0 ? "Someone has shared screen" : isScreenShareEnabled ? "You're sharing your scrren" : "You can share your screen"
     },
     showText && (isScreenShareEnabled ? "Stop screen share" : "Share screen")
-  ), visibleControls.chat && /* @__PURE__ */ React102.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React102.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React102.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React102.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React102.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React102.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React102.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React102.createElement("span", { className: "waiting-count" }, waitingRoomCount)), visibleControls.endForAll ? /* @__PURE__ */ React102.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React102.createElement("button", { className: "lk-disconnect-button" }, showIcon && /* @__PURE__ */ React102.createElement(LeaveIcon_default, null), showText && "Leave Meeting"), /* @__PURE__ */ React102.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React102.createElement(
+  ), visibleControls.chat && /* @__PURE__ */ React102.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React102.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React102.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React102.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React102.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React102.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React102.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React102.createElement("span", { className: "waiting-count" }, waitingRoomCount)), visibleControls.endForAll ? /* @__PURE__ */ React102.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React102.createElement("button", { className: "lk-disconnect-button" }, showIcon && /* @__PURE__ */ React102.createElement(LeaveIcon_default, null), showText && "Leave"), /* @__PURE__ */ React102.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React102.createElement(
     HostEndMeetingMenu,
     {
       leave: visibleControls.leave,
@@ -4452,11 +4452,6 @@ function VideoConference(_a) {
     import_components_core53.log.debug("count ", count);
     setWaitingRoomCount(count);
   };
-  const setWaitingMessage = (message) => {
-    if (showParticipantButton) {
-      setWaiting(message);
-    }
-  };
   const layoutContext = useCreateLayoutContext();
   const screenShareTracks = tracks.filter(import_components_core53.isTrackReference).filter((track) => track.publication.source === import_livekit_client19.Track.Source.ScreenShare);
   const focusTrack = (_a2 = usePinnedTracks(layoutContext)) == null ? void 0 : _a2[0];
@@ -4532,8 +4527,7 @@ function VideoConference(_a) {
       Users,
       {
         style: { display: widgetState.showChat == "show_users" ? "flex" : "none" },
-        onWaitingRoomChange: updateCount,
-        setWaiting: setWaitingMessage
+        onWaitingRoomChange: updateCount
       }
     ) : /* @__PURE__ */ React108.createElement(React108.Fragment, null),
     waiting ? /* @__PURE__ */ React108.createElement(Toast, { className: "lk-toast-connection-state" }, /* @__PURE__ */ React108.createElement(UserToggle, null, waiting)) : /* @__PURE__ */ React108.createElement(React108.Fragment, null),
