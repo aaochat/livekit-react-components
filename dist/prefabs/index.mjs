@@ -3104,6 +3104,7 @@ function ParticipantAudioTile(_a) {
 
 // src/prefabs/ShareLink.tsx
 import * as React82 from "react";
+import { setupParticipantName as setupParticipantName2 } from "@livekit/components-core";
 function useGetLink() {
   const host = getHostUrl();
   const link = `${host}/${getDomainIdentifier()}/meeting/${useGetRoom().name}`;
@@ -3174,6 +3175,29 @@ function ShareLink(_a) {
       getUsers();
     }
   }, [room.name]);
+  const { localParticipant } = useLocalParticipant();
+  const p = useEnsureParticipant(localParticipant);
+  const { infoObserver } = React82.useMemo(() => {
+    return setupParticipantName2(p);
+  }, [p]);
+  const { metadata } = useObservableState(infoObserver, {
+    name: p.name,
+    identity: p.identity,
+    metadata: p.metadata
+  });
+  const meta = metadata ? JSON.parse(metadata) : {};
+  const [showInviteUser, setShowInviteUser] = React82.useState(true);
+  React82.useEffect(() => {
+    if (meta && meta.host && meta.limited) {
+      setShowInviteUser(false);
+    }
+  }, [meta]);
+  React82.useEffect(() => {
+    const pmeta = p.metadata ? JSON.parse(p.metadata) : {};
+    if (pmeta && pmeta.host && meta.limited) {
+      setShowInviteUser(false);
+    }
+  }, [p]);
   function handleSubmit(event) {
     return __async(this, null, function* () {
       event.preventDefault();
@@ -3247,7 +3271,7 @@ function ShareLink(_a) {
       (_a2 = ulRef.current) == null ? void 0 : _a2.scrollTo({ top: ulRef.current.scrollHeight });
     }
   }, [ulRef, users]);
-  return /* @__PURE__ */ React82.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), /* @__PURE__ */ React82.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React82.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React82.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")), showToast ? /* @__PURE__ */ React82.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React82.createElement(React82.Fragment, null), /* @__PURE__ */ React82.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React82.createElement(
+  return /* @__PURE__ */ React82.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), /* @__PURE__ */ React82.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React82.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React82.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")), showToast ? /* @__PURE__ */ React82.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React82.createElement(React82.Fragment, null), showInviteUser ? /* @__PURE__ */ React82.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React82.createElement(
     "input",
     {
       className: "lk-form-control lk-chat-form-input",
@@ -3256,7 +3280,7 @@ function ShareLink(_a) {
       placeholder: "Search User...",
       onChange: handleSubmit
     }
-  )), searched.length > 0 ? /* @__PURE__ */ React82.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
+  )) : /* @__PURE__ */ React82.createElement(React82.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React82.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
     return /* @__PURE__ */ React82.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React82.createElement("div", null, /* @__PURE__ */ React82.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React82.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name)), /* @__PURE__ */ React82.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "");
 }
@@ -3415,10 +3439,7 @@ function HostEndMeetingMenu(_a) {
       style: { visibility: isOpen ? "visible" : "hidden" }
     },
     /* @__PURE__ */ React83.createElement("ul", { className: "lk-media-device-select lk-list", style: { display: !showDropdown ? "unset" : "none" } }, endForAll && /* @__PURE__ */ React83.createElement("li", null, /* @__PURE__ */ React83.createElement(DisconnectButton, { onClick: endMeeting }, endForAll)), leave && /* @__PURE__ */ React83.createElement("li", null, /* @__PURE__ */ React83.createElement("button", { ref: leaveButtonRef, className: "lk-disconnect-button", onClick: handleLeave }, "Leave Meeting"))),
-    showDropdown && /* @__PURE__ */ React83.createElement("div", { className: "assign-menu" }, /* @__PURE__ */ React83.createElement("select", { value, onChange: handleChangeValue }, remoteParticipants.map((participant) => {
-      var _a2;
-      return /* @__PURE__ */ React83.createElement("option", { value: participant.identity, key: participant.identity }, (_a2 = participant == null ? void 0 : participant.name) == null ? void 0 : _a2.substring(0, 10));
-    })), /* @__PURE__ */ React83.createElement("div", { className: "button-container" }, /* @__PURE__ */ React83.createElement("button", { className: "lk-button", onClick: handleCancel }, "Cancel"), /* @__PURE__ */ React83.createElement("button", { className: "lk-button", onClick: handleChange }, "Ok"))),
+    showDropdown && /* @__PURE__ */ React83.createElement("div", { className: "assign-menu" }, /* @__PURE__ */ React83.createElement("select", { value, onChange: handleChangeValue }, remoteParticipants.map((participant) => /* @__PURE__ */ React83.createElement("option", { value: participant.identity, key: participant.identity }, participant == null ? void 0 : participant.name))), /* @__PURE__ */ React83.createElement("div", { className: "button-container" }, /* @__PURE__ */ React83.createElement("button", { className: "lk-button", onClick: handleCancel }, "Cancel"), /* @__PURE__ */ React83.createElement("button", { className: "lk-button", onClick: handleChange }, "Ok"))),
     /* @__PURE__ */ React83.createElement("div", { className: "arrow" }, /* @__PURE__ */ React83.createElement("div", { className: "arrow-shape" }))
   ));
 }
@@ -3865,7 +3886,7 @@ function Users(_a) {
 }
 
 // src/prefabs/VideoConference.tsx
-import { isEqualTrackRef, isTrackReference as isTrackReference4, log as log10, isWeb, setupParticipantName as setupParticipantName2 } from "@livekit/components-core";
+import { isEqualTrackRef, isTrackReference as isTrackReference4, log as log10, isWeb, setupParticipantName as setupParticipantName3 } from "@livekit/components-core";
 import { RoomEvent, Track as Track11 } from "livekit-client";
 function VideoConference(_a) {
   var _b = _a, {
@@ -3882,7 +3903,7 @@ function VideoConference(_a) {
   const { localParticipant } = useLocalParticipant();
   const p = useEnsureParticipant(localParticipant);
   const { infoObserver } = React93.useMemo(() => {
-    return setupParticipantName2(p);
+    return setupParticipantName3(p);
   }, [p]);
   const { metadata } = useObservableState(infoObserver, {
     name: p.name,
@@ -3929,8 +3950,6 @@ function VideoConference(_a) {
     }
   }, [waiting]);
   React93.useEffect(() => {
-    console.log("Initial meta update", /* @__PURE__ */ new Date());
-    console.log(meta);
     if (meta && meta.host) {
       setShowShareButton(true);
       setShowParticipantButton(true);
@@ -3939,7 +3958,6 @@ function VideoConference(_a) {
     }
   }, [meta]);
   React93.useEffect(() => {
-    console.log("P data update", /* @__PURE__ */ new Date());
     const pmeta = p.metadata ? JSON.parse(p.metadata) : {};
     if (pmeta && pmeta.host) {
       setShowShareButton(true);
