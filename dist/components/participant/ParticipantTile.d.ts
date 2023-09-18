@@ -2,7 +2,17 @@ import * as React from 'react';
 import type { Participant, TrackPublication } from 'livekit-client';
 import { Track } from 'livekit-client';
 import type { ParticipantClickEvent, TrackReferenceOrPlaceholder } from '@livekit/components-core';
-/** @public */
+/**
+ * The `ParticipantContextIfNeeded` component only creates a `ParticipantContext`
+ * if there is no `ParticipantContext` already.
+ * @example
+ * ```tsx
+ * <ParticipantContextIfNeeded participant={trackReference.participant}>
+ *  ...
+ * </ParticipantContextIfNeeded>
+ * ```
+ * @public
+ */
 export declare function ParticipantContextIfNeeded(props: React.PropsWithChildren<{
     participant?: Participant;
 }>): React.JSX.Element;
@@ -20,7 +30,7 @@ export interface ParticipantTileProps extends React.HTMLAttributes<HTMLDivElemen
     onParticipantClick?: (event: ParticipantClickEvent) => void;
 }
 /**
- * The ParticipantTile component is the base utility wrapper for displaying a visual representation of a participant.
+ * The `ParticipantTile` component is the base utility wrapper for displaying a visual representation of a participant.
  * This component can be used as a child of the `TrackLoop` component or by passing a track reference as property.
  *
  * @example Using the `ParticipantTile` component with a track reference:

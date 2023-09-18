@@ -18,7 +18,7 @@ export interface VideoTrackProps extends React.HTMLAttributes<HTMLVideoElement> 
     manageSubscription?: boolean;
 }
 /**
- * The VideoTrack component is responsible for rendering participant video tracks like `camera` and `screen_share`.
+ * The `VideoTrack` component is responsible for rendering participant video tracks like `camera` and `screen_share`.
  * This component must have access to the participant's context, or alternatively pass it a `Participant` as a property.
  *
  * @example

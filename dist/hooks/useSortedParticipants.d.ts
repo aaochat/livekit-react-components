@@ -1,7 +1,6 @@
 import type { Participant } from 'livekit-client';
 /**
- * The useSortedParticipants hook returns the only the active speakers of all participants.
- *
+ * The `useSortedParticipants` hook returns the participants sorted by importance.
  * @public
  */
 export declare function useSortedParticipants(participants: Array<Participant>): Participant[];

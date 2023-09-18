@@ -13,7 +13,17 @@ export interface UseParticipantsOptions {
     room?: Room;
 }
 /**
- * The useParticipants hook returns all participants (local and remote) of the current room.
+ * The `useParticipants` hook returns all participants (local and remote) of the current room.
+ * @remarks
+ * To optimize performance, you can use the `updateOnlyOn` property to decide on what `RoomEvents` the hook updates.
+ *
+ * @example
+ * ```tsx
+ * const participants = useParticipants();
+ * <ParticipantLoop participants={participants}>
+ *  <ParticipantName />
+ * </ParticipantLoop>
+ * ```
  * @public
  */
 export declare function useParticipants(options?: UseParticipantsOptions): (import("livekit-client").RemoteParticipant | import("livekit-client").LocalParticipant)[];

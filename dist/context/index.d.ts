@@ -5,4 +5,5 @@ export { ParticipantContext, useEnsureParticipant, useMaybeParticipantContext, u
 export {} from './pin-context';
 export { RoomContext, useEnsureRoom, useMaybeRoomContext, useRoomContext } from './room-context';
 export { TrackContext, TrackRefContext, useEnsureTrackReference, useEnsureTrackRef, useMaybeTrackContext, useMaybeTrackRefContext, useTrackContext, useTrackRefContext, } from './track-reference-context';
+export { FeatureFlags, useFeatureContext, LKFeatureContext } from './feature-context';
 //# sourceMappingURL=index.d.ts.map

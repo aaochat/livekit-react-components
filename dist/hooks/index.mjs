@@ -984,10 +984,16 @@ function useParticipantTile({
   const p = useEnsureParticipant(participant);
   const trackReference = React28.useMemo(() => {
     var _a, _b, _c, _d, _e, _f;
+    const _source = (_b = (_a = trackRef == null ? void 0 : trackRef.source) != null ? _a : maybeTrackRef == null ? void 0 : maybeTrackRef.source) != null ? _b : source;
+    if (_source === void 0) {
+      throw new Error(
+        "Missing track `source`, provided it via `trackRef`, `source` property or via `TrackRefContext`."
+      );
+    }
     return {
-      participant: (_b = (_a = trackRef == null ? void 0 : trackRef.participant) != null ? _a : maybeTrackRef == null ? void 0 : maybeTrackRef.participant) != null ? _b : p,
-      source: (_d = (_c = trackRef == null ? void 0 : trackRef.source) != null ? _c : maybeTrackRef == null ? void 0 : maybeTrackRef.source) != null ? _d : source,
-      publication: (_f = (_e = trackRef == null ? void 0 : trackRef.publication) != null ? _e : maybeTrackRef == null ? void 0 : maybeTrackRef.publication) != null ? _f : publication
+      participant: (_d = (_c = trackRef == null ? void 0 : trackRef.participant) != null ? _c : maybeTrackRef == null ? void 0 : maybeTrackRef.participant) != null ? _d : p,
+      publication: (_f = (_e = trackRef == null ? void 0 : trackRef.publication) != null ? _e : maybeTrackRef == null ? void 0 : maybeTrackRef.publication) != null ? _f : publication,
+      source: _source
     };
   }, [
     trackRef == null ? void 0 : trackRef.participant,
@@ -1433,8 +1439,25 @@ function useTrackByName(trackRef, options = {}) {
   const ref = useEnsureTrackRef(trackRef);
   return useMediaTrackBySourceOrName(ref, options);
 }
+
+// src/hooks/useChat.ts
+import { setupChat } from "@livekit/components-core";
+import * as React42 from "react";
+function useChat(options) {
+  const room = useRoomContext();
+  const [setup, setSetup] = React42.useState();
+  const isSending = useObservableState(setup == null ? void 0 : setup.isSendingObservable, false);
+  const chatMessages = useObservableState(setup == null ? void 0 : setup.messageObservable, []);
+  React42.useEffect(() => {
+    const setupChatReturn = setupChat(room, options);
+    setSetup(setupChatReturn);
+    return setupChatReturn.destroy;
+  }, [room, options]);
+  return { send: setup == null ? void 0 : setup.send, chatMessages, isSending };
+}
 export {
   useAudioPlayback,
+  useChat,
   useChatToggle,
   useClearPinButton,
   useConnectionQualityIndicator,

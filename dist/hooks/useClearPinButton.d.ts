@@ -1,5 +1,10 @@
 import type { ClearPinButtonProps } from '../components';
-/** @public */
+/**
+ * The `useClearPinButton` hook provides props for the {@link ClearPinButton}
+ * or your custom implementation of it component. It adds the `onClick` handler
+ * to signal the `LayoutContext` that the tile in focus should be cleared.
+ * @public
+ */
 export declare function useClearPinButton(props: ClearPinButtonProps): {
     buttonProps: ClearPinButtonProps & {
         className: string;

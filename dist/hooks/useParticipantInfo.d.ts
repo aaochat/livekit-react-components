@@ -1,5 +1,14 @@
 import type { Participant } from 'livekit-client';
-/** @public */
+/**
+ * The `useParticipantInfo` hook returns the identity, name, and metadata of a given participant.
+ * It requires a `Participant` object passed as property or via the `ParticipantContext`.
+ *
+ * @example
+ * ```tsx
+ * const { identity, name, metadata } = useParticipantInfo({ participant });
+ * ```
+ * @public
+ */
 export interface UseParticipantInfoOptions {
     participant?: Participant;
 }

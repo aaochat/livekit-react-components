@@ -24,7 +24,7 @@ export interface MediaDeviceSelectProps extends React.HTMLAttributes<HTMLUListEl
     requestPermissions?: boolean;
 }
 /**
- * The MediaDeviceSelect list all media devices of one kind.
+ * The `MediaDeviceSelect` list all media devices of one kind.
  * Clicking on one of the listed devices make it the active media device.
  *
  * @example
