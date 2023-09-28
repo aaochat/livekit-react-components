@@ -3652,8 +3652,22 @@ function ShareLink(_a) {
       }
     });
   }
+  function setInvitedFirst(user, valueToSet = true) {
+    return __async(this, null, function* () {
+      user.invited = valueToSet;
+      const newUsers = users.map(
+        (item) => item.user_id === user.user_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
+      );
+      setUsers(newUsers);
+      const newSearched = searched.map(
+        (item) => item.user_id === user.user_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
+      );
+      setSearched(newSearched);
+    });
+  }
   function handleInvite(user) {
     return __async(this, null, function* () {
+      setInvitedFirst(user, true);
       const data = {
         method: "POST",
         // *GET, POST, PUT, DELETE, etc.
@@ -3673,24 +3687,8 @@ function ShareLink(_a) {
       };
       fetch(`/api/invite-user`, data).then((res) => __async(this, null, function* () {
         if (res.ok) {
-          user.invited = true;
-          const currentUserIndex = users.findIndex((item) => item.user_id === user.user_id);
-          const updatedUser = __spreadProps(__spreadValues({}, users[currentUserIndex]), { invited: true });
-          const newUsers = [
-            ...users.slice(0, currentUserIndex),
-            updatedUser,
-            ...users.slice(currentUserIndex + 1)
-          ];
-          setUsers(newUsers);
-          const currentSearchedIndex = searched.findIndex((item) => item.user_id === user.user_id);
-          const updatedSearched = __spreadProps(__spreadValues({}, searched[currentSearchedIndex]), { invited: true });
-          const newSearched = [
-            ...searched.slice(0, currentSearchedIndex),
-            updatedSearched,
-            ...searched.slice(currentSearchedIndex + 1)
-          ];
-          setSearched(newSearched);
         } else {
+          setInvitedFirst(user, false);
           throw Error("Error fetching server url, check server logs");
         }
       }));
@@ -4024,6 +4022,7 @@ function ControlBar(_a) {
     setIsScreenShareEnabled(enabled);
   };
   const htmlProps = mergeProps2({ className: "lk-control-bar" }, props);
+  console.log(`Share scree tracks ${screenShareTracks}`);
   return /* @__PURE__ */ React105.createElement("div", __spreadValues({}, htmlProps), visibleControls.microphone && /* @__PURE__ */ React105.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React105.createElement(TrackToggle, { source: Track9.Source.Microphone, showIcon }, showText && "Microphone"), /* @__PURE__ */ React105.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React105.createElement(MediaDeviceMenu, { kind: "audioinput" }))), visibleControls.camera && /* @__PURE__ */ React105.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React105.createElement(TrackToggle, { source: Track9.Source.Camera, showIcon }, showText && "Camera"), /* @__PURE__ */ React105.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React105.createElement(MediaDeviceMenu, { kind: "videoinput" }))), visibleControls.screenShare && browserSupportsScreenSharing && /* @__PURE__ */ React105.createElement(
     TrackToggle,
     {
@@ -4499,7 +4498,7 @@ function VideoConference(_a) {
       Chat,
       {
         style: { display: widgetState.showChat == "show_chat" ? "flex" : "none" },
-        messageFormatter: chatMessageFormatter,
+        messageFormatter: formatChatMessageLinks,
         messageEncoder: chatMessageEncoder,
         messageDecoder: chatMessageDecoder
       }
