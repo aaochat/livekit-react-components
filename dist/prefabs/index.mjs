@@ -2322,6 +2322,7 @@ function PreJoin(_a) {
   return /* @__PURE__ */ React58.createElement("div", __spreadValues({ className: "lk-prejoin" }, htmlProps), /* @__PURE__ */ React58.createElement("div", { className: "lk-video-container" }, videoTrack && /* @__PURE__ */ React58.createElement("video", { ref: videoEl, width: "1280", height: "720", "data-lk-facing-mode": facingMode }), (!videoTrack || !videoEnabled) && /* @__PURE__ */ React58.createElement("div", { className: "lk-camera-off-note" }, /* @__PURE__ */ React58.createElement(ParticipantPlaceholder_default, null))), /* @__PURE__ */ React58.createElement("div", { className: "lk-button-group-container" }, /* @__PURE__ */ React58.createElement("div", { className: "lk-button-group audio" }, /* @__PURE__ */ React58.createElement(
     TrackToggle,
     {
+      id: "microphoneButton",
       initialState: audioEnabled,
       source: Track4.Source.Microphone,
       onChange: (enabled) => setAudioEnabled(enabled)
@@ -2339,6 +2340,7 @@ function PreJoin(_a) {
   ))), /* @__PURE__ */ React58.createElement("div", { className: "lk-button-group video" }, /* @__PURE__ */ React58.createElement(
     TrackToggle,
     {
+      id: "cameraButton",
       initialState: videoEnabled,
       source: Track4.Source.Camera,
       onChange: (enabled) => setVideoEnabled(enabled)
@@ -2386,6 +2388,7 @@ function PreJoin(_a) {
     {
       className: "lk-button lk-join-button",
       type: "submit",
+      id: "submitButton",
       onClick: handleSubmit,
       disabled: !isValid
     },
