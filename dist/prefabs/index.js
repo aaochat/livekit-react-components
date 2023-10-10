@@ -3204,6 +3204,8 @@ function HostEndMeetingMenu(_a) {
       };
       fetch(`/api/end-meeting`, postData).then((res) => __async(this, null, function* () {
         if (res.ok) {
+          localStorage.removeItem("host");
+          localStorage.removeItem("limited");
           console.log("Meeting ended");
         } else {
           throw Error("Error fetching server url, check server logs");
@@ -3634,8 +3636,9 @@ function getHostUrl() {
   return typeof window ? window.location.origin : "";
 }
 function getToken() {
+  var _a;
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("token");
+  return (_a = localStorage.getItem("host")) != null ? _a : urlParams.get("token");
 }
 function ShareLink(_a) {
   var props = __objRest(_a, []);
@@ -3698,16 +3701,20 @@ function ShareLink(_a) {
     metadata: p.metadata
   });
   const meta = metadata ? JSON.parse(metadata) : {};
-  const [showInviteUser, setShowInviteUser] = React94.useState(true);
+  const [showInviteUser, setShowInviteUser] = React94.useState(false);
   React94.useEffect(() => {
     if (meta && meta.host && meta.limited) {
       setShowInviteUser(false);
+    } else {
+      setShowInviteUser(true);
     }
   }, [meta]);
   React94.useEffect(() => {
     const pmeta = p.metadata ? JSON.parse(p.metadata) : {};
     if (pmeta && pmeta.host && meta.limited) {
       setShowInviteUser(false);
+    } else {
+      setShowInviteUser(true);
     }
   }, [p]);
   function handleSubmit(event) {
@@ -4031,6 +4038,10 @@ function VideoConference(_a) {
   const carouselTracks = tracks.filter((track) => !(0, import_components_core42.isEqualTrackRef)(track, focusTrack));
   React96.useEffect(() => {
     if (meta && meta.host) {
+      localStorage.setItem("host", meta.host);
+      if (meta.limited) {
+        localStorage.setItem("limited", meta.limited);
+      }
       setShowShareButton(true);
       setShowParticipantButton(true);
       setLeaveButton("Leave Meeting");
@@ -4039,8 +4050,11 @@ function VideoConference(_a) {
   }, [meta]);
   React96.useEffect(() => {
     const pmeta = p.metadata ? JSON.parse(p.metadata) : {};
-    console.log(pmeta);
     if (pmeta && pmeta.host) {
+      localStorage.setItem("host", meta.host);
+      if (meta.limited) {
+        localStorage.setItem("limited", meta.limited);
+      }
       setShowShareButton(true);
       setShowParticipantButton(true);
       setLeaveButton("Leave Meeting");
