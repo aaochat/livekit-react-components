@@ -3145,8 +3145,9 @@ function getDomainIdentifier() {
   return typeof window ? window.location.href.split("/")[3] : "";
 }
 function getToken() {
+  var _a;
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("token");
+  return (_a = localStorage.getItem("host")) != null ? _a : urlParams.get("token");
 }
 function ShareLink(_a) {
   var props = __objRest(_a, []);
@@ -3388,6 +3389,8 @@ function HostEndMeetingMenu(_a) {
       };
       fetch(`/api/end-meeting`, postData).then((res) => __async(this, null, function* () {
         if (res.ok) {
+          localStorage.removeItem("host");
+          localStorage.removeItem("limited");
           console.log("Meeting ended");
         } else {
           throw Error("Error fetching server url, check server logs");
@@ -4027,6 +4030,10 @@ function VideoConference(_a) {
   const carouselTracks = tracks.filter((track) => !(0, import_components_core42.isEqualTrackRef)(track, focusTrack));
   React96.useEffect(() => {
     if (meta && meta.host) {
+      localStorage.setItem("host", meta.host);
+      if (meta.limited) {
+        localStorage.setItem("limited", meta.limited);
+      }
       setShowShareButton(true);
       setShowParticipantButton(true);
       setLeaveButton("Leave Meeting");
@@ -4036,6 +4043,10 @@ function VideoConference(_a) {
   React96.useEffect(() => {
     const pmeta = p.metadata ? JSON.parse(p.metadata) : {};
     if (pmeta && pmeta.host) {
+      localStorage.setItem("host", meta.host);
+      if (meta.limited) {
+        localStorage.setItem("limited", meta.limited);
+      }
       setShowShareButton(true);
       setShowParticipantButton(true);
       setLeaveButton("Leave Meeting");
