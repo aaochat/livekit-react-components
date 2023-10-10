@@ -4,7 +4,6 @@ export declare function useGetLink(): {
 };
 export declare function useGetRoom(): import("livekit-client/dist/src/room/Room").default;
 export declare function getHostUrl(): string;
-export declare function getDomainIdentifier(): string;
 export declare function getToken(): string | null;
 export type User = {
     user_id: string;
