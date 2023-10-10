@@ -2221,6 +2221,7 @@ function PreJoin(_a) {
   return /* @__PURE__ */ React55.createElement("div", __spreadValues({ className: "lk-prejoin" }, htmlProps), /* @__PURE__ */ React55.createElement("div", { className: "lk-video-container" }, videoTrack && /* @__PURE__ */ React55.createElement("video", { ref: videoEl, width: "1280", height: "720", "data-lk-facing-mode": facingMode }), (!videoTrack || !videoEnabled) && /* @__PURE__ */ React55.createElement("div", { className: "lk-camera-off-note" }, /* @__PURE__ */ React55.createElement(ParticipantPlaceholder_default, null))), /* @__PURE__ */ React55.createElement("div", { className: "lk-button-group-container" }, /* @__PURE__ */ React55.createElement("div", { className: "lk-button-group audio" }, /* @__PURE__ */ React55.createElement(
     TrackToggle,
     {
+      id: "microphoneButton",
       initialState: audioEnabled,
       source: import_livekit_client7.Track.Source.Microphone,
       onChange: (enabled) => setAudioEnabled(enabled)
@@ -2238,6 +2239,7 @@ function PreJoin(_a) {
   ))), /* @__PURE__ */ React55.createElement("div", { className: "lk-button-group video" }, /* @__PURE__ */ React55.createElement(
     TrackToggle,
     {
+      id: "cameraButton",
       initialState: videoEnabled,
       source: import_livekit_client7.Track.Source.Camera,
       onChange: (enabled) => setVideoEnabled(enabled)
@@ -2269,6 +2271,7 @@ function PreJoin(_a) {
     {
       className: "lk-button lk-join-button",
       type: "submit",
+      id: "submitButton",
       onClick: handleSubmit,
       disabled: !isValid
     },
@@ -2530,6 +2533,24 @@ function ControlBar(_a) {
     setIsScreenShareEnabled(enabled);
   };
   const htmlProps = mergeProps2({ className: "lk-control-bar" }, props);
+  React66.useEffect(() => {
+    const buttons = document.querySelectorAll("[data-lk-source]");
+    if (!isScreenShareEnabled && screenShareTracks !== 0) {
+      buttons.forEach((button) => {
+        const source = button.getAttribute("data-lk-source");
+        if (source === "screen_share") {
+          button.disabled = true;
+        }
+      });
+    } else {
+      buttons.forEach((button) => {
+        const source = button.getAttribute("data-lk-source");
+        if (source === "screen_share") {
+          button.disabled = false;
+        }
+      });
+    }
+  }, [screenShareTracks, isScreenShareEnabled]);
   return /* @__PURE__ */ React66.createElement("div", __spreadValues({}, htmlProps), visibleControls.microphone && /* @__PURE__ */ React66.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React66.createElement(TrackToggle, { source: import_livekit_client10.Track.Source.Microphone, showIcon }, showText && "Microphone"), /* @__PURE__ */ React66.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React66.createElement(MediaDeviceMenu, { kind: "audioinput" }))), visibleControls.camera && /* @__PURE__ */ React66.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React66.createElement(TrackToggle, { source: import_livekit_client10.Track.Source.Camera, showIcon }, showText && "Camera"), /* @__PURE__ */ React66.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React66.createElement(MediaDeviceMenu, { kind: "videoinput" }))), visibleControls.screenShare && browserSupportsScreenSharing && /* @__PURE__ */ React66.createElement(
     TrackToggle,
     {
