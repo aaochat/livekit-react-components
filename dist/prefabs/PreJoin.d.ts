@@ -7,6 +7,8 @@ export type LocalUserChoices = {
     audioEnabled: boolean;
     videoDeviceId: string;
     audioDeviceId: string;
+    e2ee: boolean;
+    sharedPassphrase: string;
 };
 /** @public */
 export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit' | 'onError'> {
@@ -25,6 +27,7 @@ export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
     micLabel?: string;
     camLabel?: string;
     userLabel?: string;
+    showE2EEOptions?: boolean;
 }
 /** @alpha */
 export declare function usePreviewTracks(options: CreateLocalTracksOptions, onError?: (err: Error) => void): LocalTrack[] | undefined;
@@ -35,12 +38,12 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
     deviceError: Error | null;
 };
 /**
- * The PreJoin prefab component is normally presented to the user before he enters a room.
+ * The `PreJoin` prefab component is normally presented to the user before he enters a room.
  * This component allows the user to check and select the preferred media device (camera und microphone).
- * On submit the user decisions are returned, which can then be passed on to the LiveKitRoom so that the user enters the room with the correct media devices.
+ * On submit the user decisions are returned, which can then be passed on to the `LiveKitRoom` so that the user enters the room with the correct media devices.
  *
  * @remarks
- * This component is independent from the LiveKitRoom component and don't has to be nested inside it.
+ * This component is independent from the `LiveKitRoom` component and don't has to be nested inside it.
  * Because it only access the local media tracks this component is self contained and works without connection to the LiveKit server.
  *
  * @example
@@ -49,5 +52,5 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
  * ```
  * @public
  */
-export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, ...htmlProps }: PreJoinProps): React.JSX.Element;
+export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, showE2EEOptions, ...htmlProps }: PreJoinProps): React.JSX.Element;
 //# sourceMappingURL=PreJoin.d.ts.map

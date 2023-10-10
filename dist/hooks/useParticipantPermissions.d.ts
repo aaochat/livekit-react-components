@@ -1,5 +1,13 @@
 import type { Participant } from 'livekit-client';
-/** @public */
+/**
+ * The `useParticipantPermissions` hook returns the permissions of a given participant.
+ *
+ * @example
+ * ```tsx
+ * const permissions = useParticipantPermissions({ participant });
+ * ```
+ * @public
+ */
 export interface UseParticipantPermissionsOptions {
     participant?: Participant;
 }

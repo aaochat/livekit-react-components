@@ -35,4 +35,7 @@ export { UseTrackMutedIndicatorOptions, useTrackMutedIndicator } from './useTrac
 export { UseTrackToggleProps, useTrackToggle } from './useTrackToggle';
 export { UseTracksHookReturnType, UseTracksOptions, useTracks } from './useTracks';
 export { UseVisualStableUpdateOptions, useVisualStableUpdate } from './useVisualStableUpdate';
+export { UseTrackOptions, useTrack } from './useTrack';
+export { useTrackByName } from './useTrackByName';
+export { useChat } from './useChat';
 //# sourceMappingURL=index.d.ts.map

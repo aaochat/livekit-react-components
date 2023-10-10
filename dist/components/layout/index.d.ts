@@ -1,4 +1,4 @@
 export * from './FocusLayout';
 export * from './GridLayout';
-export { CarouselLayout as CarouselView, CarouselLayoutProps as CarouselViewProps, } from './CarouselLayout';
+export { CarouselView, CarouselLayout, type CarouselLayoutProps } from './CarouselLayout';
 //# sourceMappingURL=index.d.ts.map

@@ -1,19 +1,23 @@
+import type { MessageDecoder, MessageEncoder } from '@livekit/components-core';
 import * as React from 'react';
+import type { MessageFormatter } from '../components';
 /**
  * @public
  */
 export interface VideoConferenceProps extends React.HTMLAttributes<HTMLDivElement> {
-    showShareButton: boolean;
-    showParticipantButton: boolean;
-    leaveButton: string;
+    chatMessageFormatter?: MessageFormatter;
+    chatMessageEncoder?: MessageEncoder;
+    chatMessageDecoder?: MessageDecoder;
 }
 /**
- * This component is the default setup of a classic LiveKit video conferencing app.
- * It provides functionality like switching between participant grid view and focus view.
+ * The `VideoConference` ready-made component is your drop-in solution for a classic video conferencing application.
+ * It provides functionality such as focusing on one participant, grid view with pagination to handle large numbers
+ * of participants, basic non-persistent chat, screen sharing, and more.
  *
  * @remarks
  * The component is implemented with other LiveKit components like `FocusContextProvider`,
  * `GridLayout`, `ControlBar`, `FocusLayoutContainer` and `FocusLayout`.
+ * You can use this components as a starting point for your own custom video conferencing application.
  *
  * @example
  * ```tsx
@@ -23,5 +27,5 @@ export interface VideoConferenceProps extends React.HTMLAttributes<HTMLDivElemen
  * ```
  * @public
  */
-export declare function VideoConference({ showShareButton, showParticipantButton, leaveButton, ...props }: VideoConferenceProps): React.JSX.Element;
+export declare function VideoConference({ chatMessageFormatter, chatMessageDecoder, chatMessageEncoder, ...props }: VideoConferenceProps): React.JSX.Element;
 //# sourceMappingURL=VideoConference.d.ts.map

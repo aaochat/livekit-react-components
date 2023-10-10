@@ -4,7 +4,7 @@ import type { ConnectionQualityIndicatorOptions } from '../../hooks';
 export interface ConnectionQualityIndicatorProps extends React.HTMLAttributes<HTMLDivElement>, ConnectionQualityIndicatorOptions {
 }
 /**
- * The ConnectionQualityIndicator shows the individual connection quality of a participant.
+ * The `ConnectionQualityIndicator` shows the individual connection quality of a participant.
  *
  * @example
  * ```tsx

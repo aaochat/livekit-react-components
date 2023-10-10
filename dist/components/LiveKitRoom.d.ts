@@ -1,6 +1,7 @@
 import type { AudioCaptureOptions, RoomConnectOptions, RoomOptions, ScreenShareCaptureOptions, VideoCaptureOptions } from 'livekit-client';
 import type { MediaDeviceFailure, Room } from 'livekit-client';
 import * as React from 'react';
+import { type FeatureFlags } from '../context';
 /** @public */
 export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onError'> {
     /**
@@ -65,9 +66,13 @@ export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivEleme
      */
     room?: Room;
     simulateParticipants?: number | undefined;
+    /**
+     * @internal
+     */
+    featureFlags?: FeatureFlags;
 }
 /**
- * The LiveKitRoom component provides the room context to all its child components.
+ * The `LiveKitRoom` component provides the room context to all its child components.
  * It is generally the starting point of your LiveKit app and the root of the LiveKit component tree.
  * It provides the room state as a React context to all child components, so you don't have to pass it yourself.
  *

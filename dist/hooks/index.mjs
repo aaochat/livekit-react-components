@@ -186,11 +186,23 @@ function useMaybeLayoutContext() {
 // src/context/participant-context.ts
 import * as React5 from "react";
 
-// src/context/track-context.ts
+// src/context/track-reference-context.ts
 import * as React4 from "react";
-var TrackContext = React4.createContext(void 0);
-function useMaybeTrackContext() {
-  return React4.useContext(TrackContext);
+var TrackRefContext = React4.createContext(
+  void 0
+);
+function useMaybeTrackRefContext() {
+  return React4.useContext(TrackRefContext);
+}
+function useEnsureTrackRef(trackRef) {
+  const context = useMaybeTrackRefContext();
+  const ref = trackRef != null ? trackRef : context;
+  if (!ref) {
+    throw new Error(
+      "No TrackRef, make sure you are inside a TrackRefContext or pass the TrackRef explicitly"
+    );
+  }
+  return ref;
 }
 
 // src/context/participant-context.ts
@@ -201,7 +213,7 @@ function useMaybeParticipantContext() {
 function useEnsureParticipant(participant) {
   var _a;
   const context = useMaybeParticipantContext();
-  const trackContext = useMaybeTrackContext();
+  const trackContext = useMaybeTrackRefContext();
   const p = (_a = participant != null ? participant : context) != null ? _a : trackContext == null ? void 0 : trackContext.participant;
   if (!p) {
     throw new Error(
@@ -386,49 +398,75 @@ function useFacingMode(trackReference) {
 }
 
 // src/hooks/useFocusToggle.ts
-import { setupFocusToggle, isTrackReferencePinned } from "@livekit/components-core";
+import {
+  setupFocusToggle,
+  isTrackReferencePinned,
+  isTrackReference
+} from "@livekit/components-core";
 import * as React13 from "react";
-function useFocusToggle({ trackSource, participant, props }) {
+function useFocusToggle({ trackRef, trackSource, participant, props }) {
   const p = useEnsureParticipant(participant);
+  if (!trackRef && !trackSource) {
+    throw new Error("trackRef or trackSource must be defined.");
+  }
   const layoutContext = useMaybeLayoutContext();
   const { className } = React13.useMemo(() => setupFocusToggle(), []);
   const inFocus = React13.useMemo(() => {
-    const track = p.getTrack(trackSource);
-    if ((layoutContext == null ? void 0 : layoutContext.pin.state) && track) {
-      return isTrackReferencePinned(
-        { participant: p, source: trackSource, publication: track },
-        layoutContext.pin.state
-      );
+    if (trackRef) {
+      return isTrackReferencePinned(trackRef, layoutContext == null ? void 0 : layoutContext.pin.state);
+    } else if (trackSource) {
+      const track = p.getTrack(trackSource);
+      if ((layoutContext == null ? void 0 : layoutContext.pin.state) && track) {
+        return isTrackReferencePinned(
+          { participant: p, source: trackSource, publication: track },
+          layoutContext.pin.state
+        );
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      throw new Error("trackRef or trackSource and participant must be defined.");
     }
-  }, [p, trackSource, layoutContext]);
+  }, [trackRef, layoutContext == null ? void 0 : layoutContext.pin.state, p, trackSource]);
   const mergedProps = React13.useMemo(
     () => mergeProps(props, {
       className,
       onClick: (event) => {
-        var _a;
+        var _a, _b, _c, _d, _e;
         (_a = props.onClick) == null ? void 0 : _a.call(props, event);
-        const track = p.getTrack(trackSource);
-        if ((layoutContext == null ? void 0 : layoutContext.pin.dispatch) && track) {
+        if (trackRef && isTrackReference(trackRef)) {
           if (inFocus) {
-            layoutContext.pin.dispatch({
+            (_c = layoutContext == null ? void 0 : (_b = layoutContext.pin).dispatch) == null ? void 0 : _c.call(_b, {
               msg: "clear_pin"
             });
           } else {
-            layoutContext.pin.dispatch({
+            (_e = layoutContext == null ? void 0 : (_d = layoutContext.pin).dispatch) == null ? void 0 : _e.call(_d, {
               msg: "set_pin",
-              trackReference: {
-                participant: p,
-                publication: track,
-                source: track.source
-              }
+              trackReference: trackRef
             });
+          }
+        } else if (trackSource) {
+          const track = p.getTrack(trackSource);
+          if ((layoutContext == null ? void 0 : layoutContext.pin.dispatch) && track) {
+            if (inFocus) {
+              layoutContext.pin.dispatch({
+                msg: "clear_pin"
+              });
+            } else {
+              layoutContext.pin.dispatch({
+                msg: "set_pin",
+                trackReference: {
+                  participant: p,
+                  publication: track,
+                  source: track.source
+                }
+              });
+            }
           }
         }
       }
     }),
-    [props, className, p, trackSource, inFocus, layoutContext]
+    [props, className, trackRef, trackSource, inFocus, layoutContext == null ? void 0 : layoutContext.pin, p]
   );
   return { mergedProps, inFocus };
 }
@@ -451,16 +489,23 @@ function useGridLayout(gridElement, trackCount) {
 }
 
 // src/hooks/useIsMuted.ts
-import { mutedObserver } from "@livekit/components-core";
+import {
+  getTrackReferenceId,
+  mutedObserver
+} from "@livekit/components-core";
 import * as React15 from "react";
-function useIsMuted(source, options = {}) {
-  var _a;
-  const p = useEnsureParticipant(options.participant);
-  const [isMuted, setIsMuted] = React15.useState(!!((_a = p.getTrack(source)) == null ? void 0 : _a.isMuted));
+function useIsMuted(sourceOrTrackRef, options = {}) {
+  var _a, _b;
+  const passedParticipant = typeof sourceOrTrackRef === "string" ? options.participant : sourceOrTrackRef.participant;
+  const p = useEnsureParticipant(passedParticipant);
+  const ref = typeof sourceOrTrackRef === "string" ? { participant: p, source: sourceOrTrackRef } : sourceOrTrackRef;
+  const [isMuted, setIsMuted] = React15.useState(
+    !!(((_a = ref.publication) == null ? void 0 : _a.isMuted) || ((_b = p.getTrack(ref.source)) == null ? void 0 : _b.isMuted))
+  );
   React15.useEffect(() => {
-    const listener = mutedObserver(p, source).subscribe(setIsMuted);
+    const listener = mutedObserver(ref).subscribe(setIsMuted);
     return () => listener.unsubscribe();
-  }, [p, source]);
+  }, [getTrackReferenceId(ref)]);
   return isMuted;
 }
 
@@ -523,7 +568,7 @@ function useLiveKitRoom(props) {
   const [room, setRoom] = React17.useState();
   React17.useEffect(() => {
     setRoom(passedRoom != null ? passedRoom : new Room(options));
-  }, [JSON.stringify(options), passedRoom]);
+  }, [passedRoom]);
   const htmlProps = React17.useMemo(() => {
     const { className } = setupLiveKitRoom();
     return mergeProps(rest, { className });
@@ -735,7 +780,7 @@ function useMediaDevices({ kind }) {
 }
 
 // src/hooks/useMediaTrackBySourceOrName.ts
-import { isTrackReference } from "@livekit/components-core";
+import { isTrackReference as isTrackReference2 } from "@livekit/components-core";
 import { setupMediaTrack, log as log3, isLocal, getTrackByIdentifier } from "@livekit/components-core";
 import * as React23 from "react";
 
@@ -750,6 +795,7 @@ function mergeProps2(...props) {
 
 // src/hooks/useMediaTrackBySourceOrName.ts
 function useMediaTrackBySourceOrName(observerOptions, options = {}) {
+  var _a;
   const [publication, setPublication] = React23.useState(getTrackByIdentifier(observerOptions));
   const [isMuted, setMuted] = React23.useState(publication == null ? void 0 : publication.isMuted);
   const [isSubscribed, setSubscribed] = React23.useState(publication == null ? void 0 : publication.isSubscribed);
@@ -759,9 +805,9 @@ function useMediaTrackBySourceOrName(observerOptions, options = {}) {
   const { className, trackObserver } = React23.useMemo(() => {
     return setupMediaTrack(observerOptions);
   }, [
-    observerOptions.participant.identity,
+    (_a = observerOptions.participant.sid) != null ? _a : observerOptions.participant.identity,
     observerOptions.source,
-    isTrackReference(observerOptions) && observerOptions.publication.trackSid
+    isTrackReference2(observerOptions) && observerOptions.publication.trackSid
   ]);
   React23.useEffect(() => {
     const subscription = trackObserver.subscribe((publication2) => {
@@ -774,12 +820,12 @@ function useMediaTrackBySourceOrName(observerOptions, options = {}) {
     return () => subscription == null ? void 0 : subscription.unsubscribe();
   }, [trackObserver]);
   React23.useEffect(() => {
-    var _a, _b;
+    var _a2, _b;
     if (track) {
       if (previousElement.current) {
         track.detach(previousElement.current);
       }
-      if (((_a = options.element) == null ? void 0 : _a.current) && !(isLocal(observerOptions.participant) && (track == null ? void 0 : track.kind) === "audio")) {
+      if (((_a2 = options.element) == null ? void 0 : _a2.current) && !(isLocal(observerOptions.participant) && (track == null ? void 0 : track.kind) === "audio")) {
         track.attach(options.element.current);
       }
     }
@@ -791,8 +837,8 @@ function useMediaTrackBySourceOrName(observerOptions, options = {}) {
     };
   }, [track, options.element]);
   React23.useEffect(() => {
-    var _a, _b;
-    if (typeof ((_a = publication == null ? void 0 : publication.dimensions) == null ? void 0 : _a.width) === "number" && typeof ((_b = publication == null ? void 0 : publication.dimensions) == null ? void 0 : _b.height) === "number") {
+    var _a2, _b;
+    if (typeof ((_a2 = publication == null ? void 0 : publication.dimensions) == null ? void 0 : _a2.width) === "number" && typeof ((_b = publication == null ? void 0 : publication.dimensions) == null ? void 0 : _b.height) === "number") {
       const orientation_ = publication.dimensions.width > publication.dimensions.height ? "landscape" : "portrait";
       setOrientation(orientation_);
     }
@@ -926,6 +972,7 @@ import { setupParticipantTile } from "@livekit/components-core";
 import { Track } from "livekit-client";
 import * as React28 from "react";
 function useParticipantTile({
+  trackRef,
   participant,
   source,
   publication,
@@ -933,32 +980,65 @@ function useParticipantTile({
   disableSpeakingIndicator,
   htmlProps
 }) {
+  const maybeTrackRef = useMaybeTrackRefContext();
   const p = useEnsureParticipant(participant);
+  const trackReference = React28.useMemo(() => {
+    var _a, _b, _c, _d, _e, _f;
+    const _source = (_b = (_a = trackRef == null ? void 0 : trackRef.source) != null ? _a : maybeTrackRef == null ? void 0 : maybeTrackRef.source) != null ? _b : source;
+    if (_source === void 0) {
+      throw new Error(
+        "Missing track `source`, provided it via `trackRef`, `source` property or via `TrackRefContext`."
+      );
+    }
+    return {
+      participant: (_d = (_c = trackRef == null ? void 0 : trackRef.participant) != null ? _c : maybeTrackRef == null ? void 0 : maybeTrackRef.participant) != null ? _d : p,
+      publication: (_f = (_e = trackRef == null ? void 0 : trackRef.publication) != null ? _e : maybeTrackRef == null ? void 0 : maybeTrackRef.publication) != null ? _f : publication,
+      source: _source
+    };
+  }, [
+    trackRef == null ? void 0 : trackRef.participant,
+    trackRef == null ? void 0 : trackRef.source,
+    trackRef == null ? void 0 : trackRef.publication,
+    maybeTrackRef == null ? void 0 : maybeTrackRef.participant,
+    maybeTrackRef == null ? void 0 : maybeTrackRef.source,
+    maybeTrackRef == null ? void 0 : maybeTrackRef.publication,
+    p,
+    source,
+    publication
+  ]);
   const mergedProps = React28.useMemo(() => {
     const { className } = setupParticipantTile();
     return mergeProps(htmlProps, {
       className,
       onClick: (event) => {
-        var _a;
+        var _a, _b;
         (_a = htmlProps.onClick) == null ? void 0 : _a.call(htmlProps, event);
         if (typeof onParticipantClick === "function") {
-          const track = publication != null ? publication : p.getTrack(source);
-          onParticipantClick({ participant: p, track });
+          const track = (_b = trackReference.publication) != null ? _b : trackReference.participant.getTrack(trackReference.source);
+          onParticipantClick({ participant: trackReference.participant, track });
         }
       }
     });
-  }, [htmlProps, source, onParticipantClick, p, publication]);
-  const isVideoMuted = useIsMuted(Track.Source.Camera, { participant });
-  const isAudioMuted = useIsMuted(Track.Source.Microphone, { participant });
-  const isSpeaking = useIsSpeaking(participant);
-  const facingMode = useFacingMode({ participant, publication, source });
+  }, [
+    htmlProps,
+    onParticipantClick,
+    trackReference.publication,
+    trackReference.source,
+    trackReference.participant
+  ]);
+  const isVideoMuted = useIsMuted(Track.Source.Camera, { participant: trackReference.participant });
+  const isAudioMuted = useIsMuted(Track.Source.Microphone, {
+    participant: trackReference.participant
+  });
+  const isSpeaking = useIsSpeaking(trackReference.participant);
+  const facingMode = useFacingMode(trackReference);
   return {
     elementProps: __spreadValues({
       "data-lk-audio-muted": isAudioMuted,
       "data-lk-video-muted": isVideoMuted,
       "data-lk-speaking": disableSpeakingIndicator === true ? false : isSpeaking,
-      "data-lk-local-participant": participant.isLocal,
-      "data-lk-source": source,
+      "data-lk-local-participant": trackReference.participant.isLocal,
+      "data-lk-source": trackReference.source,
       "data-lk-facing-mode": facingMode
     }, mergedProps)
   };
@@ -1137,7 +1217,7 @@ function useChatToggle({ props }) {
         if (dispatch)
           dispatch({ msg: "toggle_chat" });
       },
-      "aria-pressed": (state == null ? void 0 : state.showChat) ? "true" : "false",
+      "aria-pressed": (state == null ? void 0 : state.showChat) == "show_chat" ? "true" : "false",
       "data-lk-unread-msgs": state ? state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+" : "0"
     });
   }, [props, className, dispatch, state]);
@@ -1170,16 +1250,33 @@ function useToken(tokenEndpoint, roomName, options = {}) {
 }
 
 // src/hooks/useTrackMutedIndicator.ts
-import { setupTrackMutedIndicator } from "@livekit/components-core";
+import {
+  setupTrackMutedIndicator,
+  getTrackReferenceId as getTrackReferenceId2
+} from "@livekit/components-core";
 import * as React39 from "react";
-function useTrackMutedIndicator(source, options = {}) {
-  var _a;
-  const p = useEnsureParticipant(options.participant);
+function useTrackMutedIndicator(trackRefOrSource, options = {}) {
+  var _a, _b, _c;
+  let ref = useMaybeTrackRefContext();
+  const p = (_a = useMaybeParticipantContext()) != null ? _a : options.participant;
+  if (typeof trackRefOrSource === "string") {
+    if (!p) {
+      throw Error(`Participant missing, either provide it via context or pass it in directly`);
+    }
+    ref = { participant: p, source: trackRefOrSource };
+  } else if (trackRefOrSource) {
+    ref = trackRefOrSource;
+  } else {
+    throw Error(`No track reference found, either provide it via context or pass it in directly`);
+  }
   const { className, mediaMutedObserver } = React39.useMemo(
-    () => setupTrackMutedIndicator(p, source),
-    [p, source]
+    () => setupTrackMutedIndicator(ref),
+    [getTrackReferenceId2(ref)]
   );
-  const isMuted = useObservableState(mediaMutedObserver, !!((_a = p.getTrack(source)) == null ? void 0 : _a.isMuted));
+  const isMuted = useObservableState(
+    mediaMutedObserver,
+    !!(((_b = ref.publication) == null ? void 0 : _b.isMuted) || ((_c = ref.participant.getTrack(ref.source)) == null ? void 0 : _c.isMuted))
+  );
   return { isMuted, className };
 }
 
@@ -1331,8 +1428,36 @@ function requiredPlaceholders(sources, participants) {
   }
   return placeholderMap;
 }
+
+// src/hooks/useTrack.ts
+function useTrack(trackRef, options = {}) {
+  return useMediaTrackBySourceOrName(trackRef, options);
+}
+
+// src/hooks/useTrackByName.ts
+function useTrackByName(trackRef, options = {}) {
+  const ref = useEnsureTrackRef(trackRef);
+  return useMediaTrackBySourceOrName(ref, options);
+}
+
+// src/hooks/useChat.ts
+import { setupChat } from "@livekit/components-core";
+import * as React42 from "react";
+function useChat(options) {
+  const room = useRoomContext();
+  const [setup, setSetup] = React42.useState();
+  const isSending = useObservableState(setup == null ? void 0 : setup.isSendingObservable, false);
+  const chatMessages = useObservableState(setup == null ? void 0 : setup.messageObservable, []);
+  React42.useEffect(() => {
+    const setupChatReturn = setupChat(room, options);
+    setSetup(setupChatReturn);
+    return setupChatReturn.destroy;
+  }, [room, options]);
+  return { send: setup == null ? void 0 : setup.send, chatMessages, isSending };
+}
 export {
   useAudioPlayback,
+  useChat,
   useChatToggle,
   useClearPinButton,
   useConnectionQualityIndicator,
@@ -1365,6 +1490,8 @@ export {
   useStartAudio,
   useSwipe,
   useToken,
+  useTrack,
+  useTrackByName,
   useTrackMutedIndicator,
   useTrackToggle,
   useTracks,

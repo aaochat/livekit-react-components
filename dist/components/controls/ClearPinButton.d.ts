@@ -3,16 +3,15 @@ import * as React from 'react';
 export interface ClearPinButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 /**
- * The ClearPinButton is a basic html button with the added ability to signal
- * the LiveKitRoom that it should display the grid view again.
- *
+ * The `ClearPinButton` is a basic html button with the added ability to signal
+ * the `LayoutContext` that it should display the grid view again.
  * @remarks
- * This component works only inside a PinContext.
+ * This component works only inside a `LayoutContext`.
  *
  * @example
  * ```tsx
  * <LiveKitRoom>
- *   <ClearPinButton>Leave room</ClearPinButton>
+ *   <ClearPinButton>Back to grid view</ClearPinButton>
  * </LiveKitRoom>
  * ```
  * @public

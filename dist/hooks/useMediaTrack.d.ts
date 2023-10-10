@@ -6,7 +6,10 @@ export interface UseMediaTrackOptions {
     element?: React.RefObject<HTMLMediaElement>;
     props?: React.HTMLAttributes<HTMLVideoElement | HTMLAudioElement>;
 }
-/** @public */
+/**
+ * @public
+ * @deprecated use `useTrack` instead
+ *  */
 export declare function useMediaTrack(source: VideoSource | AudioSource, participant?: Participant, options?: UseMediaTrackOptions): {
     publication: import("livekit-client").TrackPublication | undefined;
     isMuted: boolean | undefined;
