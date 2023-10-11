@@ -6,9 +6,8 @@ export declare function useGetRoom(): import("livekit-client/dist/src/room/Room"
 export declare function getHostUrl(): string;
 export declare function getToken(): string | null;
 export type User = {
+    contact_id: string;
     user_id: string;
-    user_name: string;
-    designation: string;
     full_name: string;
     invited: boolean;
 };

@@ -27,9 +27,8 @@ export function getToken() {
 }
 
 export type User = {
+  contact_id: string;
   user_id: string;
-  user_name: string;
-  designation: string;
   full_name: string;
   invited: boolean
 };
@@ -141,25 +140,24 @@ export function ShareLink({ ...props }: any) {
     user.invited = valueToSet;
 
     const newUsers = users.map((item) =>
-      item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
+      item.contact_id === user.contact_id ? { ...item, invited: valueToSet } : item
     );
     setUsers(newUsers);
 
     const newSearched = searched.map((item) =>
-      item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
+      item.contact_id === user.contact_id ? { ...item, invited: valueToSet } : item
     );
     setSearched(newSearched);
   }
 
   async function handleInvite(user: User) {
-    setInvitedFirst(user, true);
     const data = {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "userId": user.user_id, // body data type must match "Content-Type" header
+        "userId": user.contact_id, // body data type must match "Content-Type" header
         "userName": user.full_name, // body data type must match "Content-Type" header
         "message": link,
         "meeting_id": room.name,
@@ -169,7 +167,7 @@ export function ShareLink({ ...props }: any) {
 
     fetch(`/api/invite-user`, data).then(async (res) => {
       if (res.ok) {
-
+        setInvitedFirst(user, true);
       } else {
         setInvitedFirst(user, false);
         throw Error('Error fetching server url, check server logs');
@@ -227,7 +225,6 @@ export function ShareLink({ ...props }: any) {
                 <li key={index} className="lk-chat-entry">
                   <div>
                     <span className="lk-message-body">{user.full_name}</span>
-                    <span className="lk-message-body lk-message-text">{user.user_name}</span>
                   </div>
 
                   <button type="button" onClick={() => handleInvite(user)} className={"lk-button lk-chat-form-button" + (user.invited ? ' invited' : '')}>

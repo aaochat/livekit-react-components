@@ -3715,18 +3715,17 @@ function ShareLink(_a) {
     return __async(this, null, function* () {
       user.invited = valueToSet;
       const newUsers = users.map(
-        (item) => item.user_id === user.user_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
+        (item) => item.contact_id === user.contact_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
       );
       setUsers(newUsers);
       const newSearched = searched.map(
-        (item) => item.user_id === user.user_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
+        (item) => item.contact_id === user.contact_id ? __spreadProps(__spreadValues({}, item), { invited: valueToSet }) : item
       );
       setSearched(newSearched);
     });
   }
   function handleInvite(user) {
     return __async(this, null, function* () {
-      setInvitedFirst(user, true);
       const data = {
         method: "POST",
         // *GET, POST, PUT, DELETE, etc.
@@ -3734,7 +3733,7 @@ function ShareLink(_a) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          "userId": user.user_id,
+          "userId": user.contact_id,
           // body data type must match "Content-Type" header
           "userName": user.full_name,
           // body data type must match "Content-Type" header
@@ -3745,6 +3744,7 @@ function ShareLink(_a) {
       };
       fetch(`/api/invite-user`, data).then((res) => __async(this, null, function* () {
         if (res.ok) {
+          setInvitedFirst(user, true);
         } else {
           setInvitedFirst(user, false);
           throw Error("Error fetching server url, check server logs");
@@ -3781,7 +3781,7 @@ function ShareLink(_a) {
       onChange: handleSubmit
     }
   )) : /* @__PURE__ */ React94.createElement(React94.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React94.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
-    return /* @__PURE__ */ React94.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React94.createElement("div", null, /* @__PURE__ */ React94.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React94.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name)), /* @__PURE__ */ React94.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
+    return /* @__PURE__ */ React94.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React94.createElement("div", null, /* @__PURE__ */ React94.createElement("span", { className: "lk-message-body" }, user.full_name)), /* @__PURE__ */ React94.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "");
 }
 
