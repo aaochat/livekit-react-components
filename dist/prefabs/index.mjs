@@ -354,7 +354,7 @@ function Chat(_a) {
       lastReadMsgAt.current = (_c = chatMessages[chatMessages.length - 1]) == null ? void 0 : _c.timestamp;
       return;
     }
-    const unreadMessageCount = chatMessages.filter(
+    const unreadMessageCount = chatMessages.reverse().filter(
       (msg) => !lastReadMsgAt.current || msg.timestamp > lastReadMsgAt.current
     ).length;
     const { widget } = layoutContext;
