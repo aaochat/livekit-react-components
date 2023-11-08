@@ -3187,7 +3187,9 @@ function Chat(_a) {
       lastReadMsgAt.current = (_c = chatMessages[chatMessages.length - 1]) == null ? void 0 : _c.timestamp;
       return;
     }
-    const unreadMessageCount = chatMessages.reverse().filter(
+    console.log(chatMessages);
+    console.log(lastReadMsgAt.current);
+    const unreadMessageCount = chatMessages.filter(
       (msg) => !lastReadMsgAt.current || msg.timestamp > lastReadMsgAt.current
     ).length;
     const { widget } = layoutContext;
@@ -3195,13 +3197,13 @@ function Chat(_a) {
       (_e = widget.dispatch) == null ? void 0 : _e.call(widget, { msg: "unread_msg", count: unreadMessageCount });
     }
   }, [chatMessages, layoutContext == null ? void 0 : layoutContext.widget]);
-  return /* @__PURE__ */ React97.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat" }), /* @__PURE__ */ React97.createElement("ul", { className: "tl-list lk-chat-messages", ref: ulRef }, props.children ? chatMessages.reverse().map(
+  return /* @__PURE__ */ React97.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat" }), /* @__PURE__ */ React97.createElement("ul", { className: "tl-list lk-chat-messages", ref: ulRef }, props.children ? chatMessages.map(
     (msg, idx) => cloneSingleChild(props.children, {
       entry: msg,
       key: idx,
       messageFormatter
     })
-  ) : chatMessages.reverse().map((msg, idx, allMsg) => {
+  ) : chatMessages.map((msg, idx, allMsg) => {
     const hideName = idx >= 1 && allMsg[idx - 1].from === msg.from;
     const hideTimestamp = idx >= 1 && msg.timestamp - allMsg[idx - 1].timestamp < 6e4;
     return /* @__PURE__ */ React97.createElement(
