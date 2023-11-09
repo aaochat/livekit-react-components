@@ -101,7 +101,7 @@ var React = __toESM(require("react"));
 function chatReducer(state, action) {
   if (action.msg && action.msg !== state.showChat) {
     if (action.msg === "show_chat") {
-      return __spreadProps(__spreadValues({}, state), { showChat: "show_chat" });
+      return __spreadProps(__spreadValues({}, state), { showChat: "show_chat", unreadMessages: 0 });
     } else if (action.msg === "toggle_chat") {
       const newState = __spreadProps(__spreadValues({}, state), { showChat: state.showChat == "show_chat" ? null : "show_chat" });
       if (newState.showChat === "show_chat") {
@@ -371,6 +371,7 @@ function Chat(_a) {
     return __async(this, null, function* () {
       event.preventDefault();
       if (inputRef.current && inputRef.current.value.trim() !== "") {
+        inputRef.current.focus();
         if (send) {
           yield send(inputRef.current.value);
           inputRef.current.value = "";
@@ -427,6 +428,7 @@ function Chat(_a) {
       className: "lk-form-control lk-chat-form-input",
       disabled: isSending,
       ref: inputRef,
+      autoFocus: true,
       type: "text",
       placeholder: "Enter a message..."
     }
