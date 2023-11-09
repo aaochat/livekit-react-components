@@ -298,7 +298,7 @@ function UserChat(_a) {
     "hideTimestamp",
     "messageFormatter"
   ]);
-  var _a2, _b2, _c, _d, _e, _f;
+  var _a2, _b2, _c, _d, _e;
   const formattedMessage = React9.useMemo(() => {
     return messageFormatter ? messageFormatter(entry.message) : entry.message;
   }, [entry.message, messageFormatter]);
@@ -311,7 +311,7 @@ function UserChat(_a) {
       title: time.toLocaleTimeString(locale, { timeStyle: "full" }),
       "data-lk-message-origin": ((_a2 = entry.from) == null ? void 0 : _a2.isLocal) ? "local" : "remote"
     }, props),
-    /* @__PURE__ */ React9.createElement("span", { className: "lk-meta-data" }, (_f = (_b2 = entry.from) == null ? void 0 : _b2.isLocal) != null ? _f : /* @__PURE__ */ React9.createElement("strong", { className: "lk-participant-name" }, (_e = (_c = entry.from) == null ? void 0 : _c.name) != null ? _e : (_d = entry.from) == null ? void 0 : _d.identity)),
+    !((_b2 = entry.from) == null ? void 0 : _b2.isLocal) ? /* @__PURE__ */ React9.createElement("span", { className: "lk-meta-data" }, /* @__PURE__ */ React9.createElement("strong", { className: "lk-participant-name" }, (_e = (_c = entry.from) == null ? void 0 : _c.name) != null ? _e : (_d = entry.from) == null ? void 0 : _d.identity)) : /* @__PURE__ */ React9.createElement(React9.Fragment, null),
     /* @__PURE__ */ React9.createElement("span", { className: "lk-message-body" }, formattedMessage)
   );
 }
@@ -354,8 +354,6 @@ function Chat(_a) {
       lastReadMsgAt.current = (_c = chatMessages[chatMessages.length - 1]) == null ? void 0 : _c.timestamp;
       return;
     }
-    console.log(chatMessages);
-    console.log(lastReadMsgAt.current);
     const unreadMessageCount = chatMessages.filter(
       (msg) => !lastReadMsgAt.current || msg.timestamp > lastReadMsgAt.current
     ).length;
