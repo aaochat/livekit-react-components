@@ -3164,7 +3164,6 @@ function Chat(_a) {
     return __async(this, null, function* () {
       event.preventDefault();
       if (inputRef.current && inputRef.current.value.trim() !== "") {
-        inputRef.current.focus();
         if (send) {
           yield send(inputRef.current.value);
           inputRef.current.value = "";
@@ -3219,9 +3218,7 @@ function Chat(_a) {
     "input",
     {
       className: "lk-form-control lk-chat-form-input",
-      disabled: isSending,
       ref: inputRef,
-      autoFocus: true,
       type: "text",
       placeholder: "Enter a message..."
     }
