@@ -3338,7 +3338,6 @@ function HostEndMeetingMenu(_a) {
   React86.useLayoutEffect(() => {
     if (button.current && tooltip.current && updateRequired) {
       (0, import_components_core39.computeMenuPosition)(button.current, tooltip.current).then(({ x, y }) => {
-        console.log(x, y);
         if (tooltip.current) {
           Object.assign(tooltip.current.style, { left: `${x}px`, top: `${y + 5}px` });
         }
@@ -3604,7 +3603,6 @@ function ControlBar(_a) {
     setIsScreenShareEnabled(enabled);
   };
   const htmlProps = mergeProps2({ className: "lk-control-bar" }, props);
-  console.log(`Share scree tracks ${screenShareTracks}`);
   React90.useEffect(() => {
     const buttons = document.querySelectorAll("[data-lk-source]");
     if (!isScreenShareEnabled && screenShareTracks !== 0) {
@@ -3811,7 +3809,6 @@ function Users(_a) {
       fetch(`/api/get-waitingroom-state`, postData).then((res) => __async(this, null, function* () {
         if (res.ok) {
           const body = yield res.json();
-          console.log(body);
           setToggleWaiting(body.waiting_room);
         } else {
           throw Error("Error fetching server url, check server logs");
@@ -4016,7 +4013,6 @@ function VideoConference(_a) {
   );
   const widgetUpdate = (state) => {
     import_components_core42.log.debug("updating widget state", state);
-    console.log(state);
     setWidgetState(state);
   };
   const updateCount = (count) => {
