@@ -4023,6 +4023,7 @@ function VideoConference(_a) {
   const screenShareTracks = tracks.filter(import_components_core42.isTrackReference).filter((track) => track.publication.source === import_livekit_client18.Track.Source.ScreenShare);
   const focusTrack = (_a2 = usePinnedTracks(layoutContext)) == null ? void 0 : _a2[0];
   const carouselTracks = tracks.filter((track) => !(0, import_components_core42.isEqualTrackRef)(track, focusTrack));
+  console.log({ version: 0.1 });
   React96.useEffect(() => {
     if (meta && meta.host) {
       localStorage.setItem("host", meta.host);

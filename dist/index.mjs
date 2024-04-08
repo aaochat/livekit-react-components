@@ -4446,6 +4446,7 @@ function VideoConference(_a) {
   const screenShareTracks = tracks.filter(isTrackReference4).filter((track) => track.publication.source === Track11.Source.ScreenShare);
   const focusTrack = (_a2 = usePinnedTracks(layoutContext)) == null ? void 0 : _a2[0];
   const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
+  console.log({ version: 0.1 });
   React111.useEffect(() => {
     if (meta && meta.host) {
       localStorage.setItem("host", meta.host);
