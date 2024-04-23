@@ -3339,7 +3339,7 @@ function HostEndMeetingMenu(_a) {
     if (button.current && tooltip.current && updateRequired) {
       (0, import_components_core39.computeMenuPosition)(button.current, tooltip.current).then(({ x, y }) => {
         if (tooltip.current) {
-          Object.assign(tooltip.current.style, { left: `${x}px`, top: `${y + 5}px` });
+          Object.assign(tooltip.current.style, { left: `${x}px`, top: `${y - 5}px` });
         }
       });
       setUpdateRequired(false);
@@ -3472,7 +3472,9 @@ function HostEndMeetingMenu(_a) {
       onClick: () => setIsOpen(!isOpen),
       ref: button
     }),
-    props.children
+    props.children,
+    showIcon && /* @__PURE__ */ React86.createElement(LeaveIcon_default, null),
+    showText && "Leave"
   ), /* @__PURE__ */ React86.createElement(
     "div",
     {
