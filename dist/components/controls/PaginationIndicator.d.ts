@@ -3,5 +3,5 @@ export interface PaginationIndicatorProps {
     totalPageCount: number;
     currentPage: number;
 }
-export declare function PaginationIndicator({ totalPageCount, currentPage }: PaginationIndicatorProps): React.JSX.Element;
+export declare const PaginationIndicator: React.ForwardRefExoticComponent<PaginationIndicatorProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=PaginationIndicator.d.ts.map

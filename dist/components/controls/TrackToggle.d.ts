@@ -5,7 +5,11 @@ export interface TrackToggleProps<T extends ToggleSource> extends Omit<React.But
     source: T;
     showIcon?: boolean;
     initialState?: boolean;
-    onChange?: (enabled: boolean) => void;
+    /**
+     * Function that is called when the enabled state of the toggle changes.
+     * The second function argument `isUserInitiated` is `true` if the change was initiated by a user interaction, such as a click.
+     */
+    onChange?: (enabled: boolean, isUserInitiated: boolean) => void;
     captureOptions?: CaptureOptionsBySource<T>;
 }
 /**
@@ -21,5 +25,5 @@ export interface TrackToggleProps<T extends ToggleSource> extends Omit<React.But
  * ```
  * @public
  */
-export declare function TrackToggle<T extends ToggleSource>({ showIcon, ...props }: TrackToggleProps<T>): React.JSX.Element;
+export declare const TrackToggle: React.ForwardRefExoticComponent<TrackToggleProps<ToggleSource> & React.RefAttributes<HTMLButtonElement>>;
 //# sourceMappingURL=TrackToggle.d.ts.map

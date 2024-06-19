@@ -15,5 +15,5 @@ export interface DisconnectButtonProps extends React.ButtonHTMLAttributes<HTMLBu
  * ```
  * @public
  */
-export declare function DisconnectButton(props: DisconnectButtonProps): React.JSX.Element;
+export declare const DisconnectButton: React.ForwardRefExoticComponent<DisconnectButtonProps & React.RefAttributes<HTMLButtonElement>>;
 //# sourceMappingURL=DisconnectButton.d.ts.map

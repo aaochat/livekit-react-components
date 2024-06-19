@@ -14,9 +14,11 @@ export type ChatContextAction = {
 } | {
     msg: 'unread_msg';
     count: number;
+} | {
+    msg: 'toggle_settings';
 };
 /** @internal */
-export type ChatContextType = {
+export type WidgetContextType = {
     dispatch?: React.Dispatch<ChatContextAction>;
     state?: WidgetState;
 };

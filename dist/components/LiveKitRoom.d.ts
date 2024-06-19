@@ -38,7 +38,7 @@ export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivEleme
     screen?: ScreenShareCaptureOptions | boolean;
     /**
      * If set to true a connection to LiveKit room is initiated.
-     * @defaultValue `false`
+     * @defaultValue `true`
      */
     connect?: boolean;
     /**
@@ -59,6 +59,7 @@ export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivEleme
     onDisconnected?: () => void;
     onError?: (error: Error) => void;
     onMediaDeviceFailure?: (failure?: MediaDeviceFailure) => void;
+    onEncryptionError?: (error: Error) => void;
     /**
      * Optional room instance.
      * By passing your own room instance you overwrite the `options` parameter,
@@ -88,5 +89,7 @@ export interface LiveKitRoomProps extends Omit<React.HTMLAttributes<HTMLDivEleme
  * ```
  * @public
  */
-export declare function LiveKitRoom(props: React.PropsWithChildren<LiveKitRoomProps>): React.JSX.Element;
+export declare const LiveKitRoom: React.ForwardRefExoticComponent<LiveKitRoomProps & {
+    children?: React.ReactNode;
+} & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=LiveKitRoom.d.ts.map

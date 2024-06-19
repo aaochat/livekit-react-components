@@ -12,5 +12,5 @@ export interface ConnectionQualityIndicatorProps extends React.HTMLAttributes<HT
  * ```
  * @public
  */
-export declare function ConnectionQualityIndicator(props: ConnectionQualityIndicatorProps): React.JSX.Element;
+export declare const ConnectionQualityIndicator: React.ForwardRefExoticComponent<ConnectionQualityIndicatorProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=ConnectionQualityIndicator.d.ts.map

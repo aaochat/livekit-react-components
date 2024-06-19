@@ -9,11 +9,6 @@ export interface CarouselLayoutProps extends React.HTMLAttributes<HTMLMediaEleme
     orientation?: 'vertical' | 'horizontal';
 }
 /**
- * @deprecated Renamed to [[CarouselLayout]]
- * @public
- */
-export declare const CarouselView: typeof CarouselLayout;
-/**
  * The `CarouselLayout` component displays a list of tracks in a scroll container.
  * It will display as many tiles as possible and overflow the rest.
  * @remarks

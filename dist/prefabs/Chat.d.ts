@@ -1,8 +1,9 @@
-import type { MessageEncoder, MessageDecoder } from '@livekit/components-core';
+import type { ChatOptions } from '@livekit/components-core';
 import * as React from 'react';
 import type { MessageFormatter } from '../components/ChatEntry';
+import { MessageDecoder, MessageEncoder } from './UserChat';
 /** @public */
-export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChatProps extends React.HTMLAttributes<HTMLDivElement>, ChatOptions {
     messageFormatter?: MessageFormatter;
     messageEncoder?: MessageEncoder;
     messageDecoder?: MessageDecoder;
@@ -19,5 +20,5 @@ export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
  * ```
  * @public
  */
-export declare function Chat({ messageFormatter, messageDecoder, messageEncoder, ...props }: ChatProps): React.JSX.Element;
+export declare function Chat({ messageFormatter, messageDecoder, messageEncoder, channelTopic, ...props }: ChatProps): React.JSX.Element;
 //# sourceMappingURL=Chat.d.ts.map

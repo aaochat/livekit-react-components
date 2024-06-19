@@ -10,5 +10,5 @@ import type { ParticipantTileProps } from './ParticipantTile';
  * ```
  * @public
  */
-export declare function ParticipantAudioTile({ participant, children, source, publication, disableSpeakingIndicator, onParticipantClick, ...htmlProps }: ParticipantTileProps): React.JSX.Element;
+export declare const ParticipantAudioTile: React.ForwardRefExoticComponent<ParticipantTileProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=ParticipantAudioTile.d.ts.map
