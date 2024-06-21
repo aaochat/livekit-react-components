@@ -65,11 +65,9 @@ function useResizeObserver(target, callback) {
   React.useLayoutEffect(() => {
     let didUnsubscribe = false;
     const targetEl = target.current;
-    if (!targetEl)
-      return;
+    if (!targetEl) return;
     function cb(entry, observer) {
-      if (didUnsubscribe)
-        return;
+      if (didUnsubscribe) return;
       storedCallback.current(entry, observer);
     }
     resizeObserver == null ? void 0 : resizeObserver.subscribe(targetEl, cb);
@@ -93,8 +91,7 @@ function createResizeObserver() {
       window.requestAnimationFrame(() => {
         const triggered = /* @__PURE__ */ new Set();
         for (let i = 0; i < allEntries.length; i++) {
-          if (triggered.has(allEntries[i].target))
-            continue;
+          if (triggered.has(allEntries[i].target)) continue;
           triggered.add(allEntries[i].target);
           const cbs = callbacks.get(allEntries[i].target);
           cbs == null ? void 0 : cbs.forEach((cb) => cb(allEntries[i], obs));
@@ -123,8 +120,7 @@ function createResizeObserver() {
         return;
       }
       const cbIndex = cbs.indexOf(callback);
-      if (cbIndex !== -1)
-        cbs.splice(cbIndex, 1);
+      if (cbIndex !== -1) cbs.splice(cbIndex, 1);
       callbacks.set(target, cbs);
     }
   };
@@ -152,8 +148,7 @@ import * as React2 from "react";
 function useObservableState(observable, startWith) {
   const [state, setState] = React2.useState(startWith);
   React2.useEffect(() => {
-    if (typeof window === "undefined" || !observable)
-      return;
+    if (typeof window === "undefined" || !observable) return;
     const subscription = observable.subscribe(setState);
     return () => subscription.unsubscribe();
   }, [observable]);
@@ -449,8 +444,7 @@ function useClearPinButton(props) {
       className,
       disabled: !(state == null ? void 0 : state.length),
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "clear_pin" });
+        if (dispatch) dispatch({ msg: "clear_pin" });
       }
     });
     return mergedProps;
@@ -675,8 +669,7 @@ function useLiveKitRoom(props) {
     return mergeProps(rest, { className });
   }, [rest]);
   React19.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     const onSignalConnected = () => {
       const localP = room.localParticipant;
       log.debug("trying to publish local tracks");
@@ -702,8 +695,7 @@ function useLiveKitRoom(props) {
     };
   }, [room, audio, video, screen, onError, onEncryptionError, onMediaDeviceFailure]);
   React19.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     if (simulateParticipants) {
       room.simulateParticipants({
         participants: {
@@ -745,17 +737,14 @@ function useLiveKitRoom(props) {
     simulateParticipants
   ]);
   React19.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     const connectionStateChangeListener = (state) => {
       switch (state) {
         case ConnectionState2.Disconnected:
-          if (onDisconnected)
-            onDisconnected();
+          if (onDisconnected) onDisconnected();
           break;
         case ConnectionState2.Connected:
-          if (onConnected)
-            onConnected();
+          if (onConnected) onConnected();
           break;
         default:
           break;
@@ -767,8 +756,7 @@ function useLiveKitRoom(props) {
     };
   }, [token, onConnected, onDisconnected, room]);
   React19.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     return () => {
       log.info("disconnecting on onmount");
       room.disconnect();
@@ -863,8 +851,7 @@ function useMediaDeviceSelect({
   React22.useEffect(() => {
     const listener = activeDeviceObservable.subscribe((deviceId) => {
       log2.info("setCurrentDeviceId", deviceId);
-      if (deviceId)
-        setCurrentDeviceId(deviceId);
+      if (deviceId) setCurrentDeviceId(deviceId);
     });
     return () => {
       listener == null ? void 0 : listener.unsubscribe();
@@ -1215,10 +1202,8 @@ function useSwipe(element, options = {}) {
     const distance = touchStart.current - touchEnd.current;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe && options.onLeftSwipe)
-      options.onLeftSwipe();
-    if (isRightSwipe && options.onRightSwipe)
-      options.onRightSwipe();
+    if (isLeftSwipe && options.onLeftSwipe) options.onLeftSwipe();
+    if (isRightSwipe && options.onRightSwipe) options.onRightSwipe();
   }, [minSwipeDistance, options]);
   React38.useEffect(() => {
     const elementCopy = element.current;
@@ -1247,8 +1232,7 @@ function useChatToggle({ props }) {
     return mergeProps(props, {
       className,
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "toggle_chat" });
+        if (dispatch) dispatch({ msg: "toggle_chat" });
       },
       "aria-pressed": (state == null ? void 0 : state.showChat) == "show_chat" ? "true" : "false",
       "data-lk-unread-msgs": state ? state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+" : "0"
@@ -1766,8 +1750,7 @@ function useToggleShareLink({ props }) {
     () => mergeProps2(props, {
       className,
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "show_invite" });
+        if (dispatch) dispatch({ msg: "show_invite" });
       },
       "aria-pressed": (state == null ? void 0 : state.showChat) == "show_invite" ? "true" : "false"
     }),
@@ -3034,8 +3017,7 @@ function LayoutContextProvider({
   const layoutContextValue = useEnsureCreateLayoutContext(value);
   React105.useEffect(() => {
     log10.debug("PinState Updated", { state: layoutContextValue.pin.state });
-    if (onPinChange && layoutContextValue.pin.state)
-      onPinChange(layoutContextValue.pin.state);
+    if (onPinChange && layoutContextValue.pin.state) onPinChange(layoutContextValue.pin.state);
   }, [layoutContextValue.pin.state, onPinChange]);
   React105.useEffect(() => {
     log10.debug("Chat Widget Updated", { widgetState: layoutContextValue.widget.state });
@@ -4412,8 +4394,7 @@ function useToggleUserLink({ props }) {
     () => mergeProps2(props, {
       className,
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "show_users" });
+        if (dispatch) dispatch({ msg: "show_users" });
       },
       "aria-pressed": (state == null ? void 0 : state.showChat) == "show_users" ? "true" : "false"
     }),
@@ -4455,8 +4436,7 @@ function BlurIndicater({ source, parentCallback }) {
   }, [track]);
   const toggleBlur = () => __async(this, null, function* () {
     var _a;
-    if (!room)
-      return;
+    if (!room) return;
     try {
       const camTrack = room.localParticipant.getTrackPublication(source).track;
       if (((_a = camTrack.getProcessor()) == null ? void 0 : _a.name) !== "background-blur") {
@@ -4509,8 +4489,7 @@ function WhiteboardIndicater({
     }
   }, [isWhiteboardHost, isWhiteboardShared, shareScreenTracks]);
   const toggleWhiteboard = () => __async(this, null, function* () {
-    if (!room)
-      return;
+    if (!room) return;
     try {
       if (state == null ? void 0 : state.show_whiteboard) {
         if (dispatch) {
@@ -4654,8 +4633,7 @@ function useSettingsToggle({ props }) {
     return mergeProps(props, {
       className,
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "toggle_settings" });
+        if (dispatch) dispatch({ msg: "toggle_settings" });
       },
       "aria-pressed": (state == null ? void 0 : state.showSettings) ? "true" : "false"
     });
@@ -4914,8 +4892,7 @@ var ToggleSwitch = ({
   disabled
 }) => {
   function handleKeyPress(e) {
-    if (e.keyCode !== 32)
-      return;
+    if (e.keyCode !== 32) return;
     e.preventDefault();
     onChange(!checked);
   }
@@ -5290,6 +5267,8 @@ function CallUser(_a) {
   React135.useEffect(() => {
     usersList2();
   }, []);
+  const ulRef = React135.useRef(null);
+  const ulRef2 = React135.useRef(null);
   const handleKeyPress = (event) => {
     const keyCode = event.keyCode || event.which;
     if (!/^\d+$/.test(event.key) && ![37, 38, 39, 40, 8].includes(keyCode)) {
@@ -5421,8 +5400,7 @@ function CallUser(_a) {
   return /* @__PURE__ */ React135.createElement(
     "div",
     __spreadProps(__spreadValues({}, props), {
-      className: "lk-chat lk-users",
-      style: { overflowY: "hidden" }
+      className: "lk-chat lk-users"
     }),
     /* @__PURE__ */ React135.createElement("div", { style: { height: "-webkit-fill-available" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "sticky", top: 0, zIndex: 1 } }, /* @__PURE__ */ React135.createElement(
       "div",
@@ -5570,79 +5548,25 @@ function CallUser(_a) {
       {
         style: ((_b2 = props == null ? void 0 : props.style) == null ? void 0 : _b2.display) == "grid" ? { height: "80vh", overflow: "auto" } : {}
       },
-      activeTab == "contacts" && filteredContacts.map((item) => /* @__PURE__ */ React135.createElement(
-        "div",
-        {
-          className: "tl-participant-li ",
-          style: { paddingLeft: "15px", paddingRight: "15px" },
-          key: item._id
-        },
-        /* @__PURE__ */ React135.createElement(
-          "div",
+      activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
+        return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name), /* @__PURE__ */ React135.createElement(
+          "button",
           {
-            className: "lk-participant-metadata",
-            style: { marginRight: "3px", marginBottom: "10px" }
+            disabled: invitedUsers.includes(user.user_id),
+            className: `lk-button   ${invitedUsers.includes(user.user_id) ? "lk-secondary" : "lk-success"}`,
+            style: {
+              marginRight: "3px",
+              marginBottom: "3px",
+              cursor: `${invitedUsers.includes(user.user_id) ? "inherit" : "pointer"}`
+            },
+            onClick: () => calling(user.user_id)
           },
-          /* @__PURE__ */ React135.createElement(
-            "div",
-            {
-              className: "",
-              style: {
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                height: "38px"
-              }
-            },
-            /* @__PURE__ */ React135.createElement("span", null, item.full_name),
-            /* @__PURE__ */ React135.createElement("span", { style: { color: "grey", fontSize: "14px" } }, item.designation)
-          ),
-          /* @__PURE__ */ React135.createElement("div", { className: "display-flex" }, /* @__PURE__ */ React135.createElement(
-            "button",
-            {
-              disabled: invitedUsers.includes(item.user_id),
-              className: `lk-button   ${invitedUsers.includes(item.user_id) ? "lk-secondary" : "lk-success"}`,
-              style: {
-                marginRight: "3px",
-                marginBottom: "3px",
-                cursor: `${invitedUsers.includes(item.user_id) ? "inherit" : "pointer"}`
-              },
-              onClick: () => calling(item.user_id)
-            },
-            invitedUsers.includes(item.user_id) ? "Invited" : "Call"
-          ))
-        )
-      )),
-      activeTab == "callParticipants" && filteredParticipants.map((item) => /* @__PURE__ */ React135.createElement(
-        "div",
-        {
-          className: "tl-participant-li ",
-          style: { paddingLeft: "15px", paddingRight: "15px" },
-          key: item._id
-        },
-        /* @__PURE__ */ React135.createElement(
-          "div",
-          {
-            className: "lk-participant-metadata",
-            style: { marginRight: "3px", marginBottom: "10px" }
-          },
-          /* @__PURE__ */ React135.createElement(
-            "div",
-            {
-              className: "",
-              style: {
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-around",
-                height: "38px"
-              }
-            },
-            /* @__PURE__ */ React135.createElement("span", null, item.full_name, room.localParticipant.identity == item.user_id ? " (me)" : ""),
-            /* @__PURE__ */ React135.createElement("span", { style: { color: "grey", fontSize: "14px" } }, item.designation ? item.designation : "-")
-          ),
-          /* @__PURE__ */ React135.createElement("div", { className: "display-flex" })
-        )
-      ))
+          invitedUsers.includes(user.user_id) ? "Invited" : "Call"
+        )));
+      })),
+      activeTab == "callParticipants" && /* @__PURE__ */ React135.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
+        return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : "-"), /* @__PURE__ */ React135.createElement("div", null, "\xA0")));
+      }))
     ))
   );
 }
@@ -5705,6 +5629,7 @@ function VideoConference(_a) {
   const widgetUpdate = (state) => {
     log13.debug("updating widget state", state);
     setWidgetState(state);
+    console.log(widgetState);
   };
   const updateCount = (count) => {
     log13.debug("count ", count);
@@ -5720,7 +5645,6 @@ function VideoConference(_a) {
   };
   const focusTrack = (_a2 = usePinnedTracks(layoutContext)) == null ? void 0 : _a2[0];
   const carouselTracks = tracks.filter((track) => !isEqualTrackRef(track, focusTrack));
-  console.log({ version: 0.1 });
   React136.useEffect(() => {
     if (meta && meta.host) {
       localStorage.setItem("host", meta.host);
@@ -5833,7 +5757,7 @@ function VideoConference(_a) {
         showExtraSettingMenu
       }
     )),
-    showShareButton ? /* @__PURE__ */ React136.createElement(React136.Fragment, null, isCallScreen ? /* @__PURE__ */ React136.createElement(
+    showShareButton && isCallScreen ? /* @__PURE__ */ React136.createElement(
       CallUser,
       {
         style: {
@@ -5842,7 +5766,8 @@ function VideoConference(_a) {
         socket,
         contactsList: invitedUsers
       }
-    ) : /* @__PURE__ */ React136.createElement(
+    ) : /* @__PURE__ */ React136.createElement(React136.Fragment, null),
+    showShareButton && !isCallScreen ? /* @__PURE__ */ React136.createElement(
       ShareLink,
       {
         style: {
@@ -5850,7 +5775,7 @@ function VideoConference(_a) {
         },
         isCallScreen
       }
-    )) : /* @__PURE__ */ React136.createElement(React136.Fragment, null),
+    ) : /* @__PURE__ */ React136.createElement(React136.Fragment, null),
     showParticipantButton ? /* @__PURE__ */ React136.createElement(
       Users,
       {
@@ -5858,7 +5783,7 @@ function VideoConference(_a) {
         onWaitingRoomChange: updateCount
       }
     ) : /* @__PURE__ */ React136.createElement(React136.Fragment, null),
-    /* @__PURE__ */ React136.createElement(
+    showChatButton ? /* @__PURE__ */ React136.createElement(
       Chat,
       {
         style: { display: widgetState.showChat == "show_chat" ? "flex" : "none" },
@@ -5866,7 +5791,7 @@ function VideoConference(_a) {
         messageEncoder: chatMessageEncoder,
         messageDecoder: chatMessageDecoder
       }
-    ),
+    ) : /* @__PURE__ */ React136.createElement(React136.Fragment, null),
     SettingsComponent && /* @__PURE__ */ React136.createElement(
       "div",
       {

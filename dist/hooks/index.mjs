@@ -62,11 +62,9 @@ function useResizeObserver(target, callback) {
   React.useLayoutEffect(() => {
     let didUnsubscribe = false;
     const targetEl = target.current;
-    if (!targetEl)
-      return;
+    if (!targetEl) return;
     function cb(entry, observer) {
-      if (didUnsubscribe)
-        return;
+      if (didUnsubscribe) return;
       storedCallback.current(entry, observer);
     }
     resizeObserver == null ? void 0 : resizeObserver.subscribe(targetEl, cb);
@@ -90,8 +88,7 @@ function createResizeObserver() {
       window.requestAnimationFrame(() => {
         const triggered = /* @__PURE__ */ new Set();
         for (let i = 0; i < allEntries.length; i++) {
-          if (triggered.has(allEntries[i].target))
-            continue;
+          if (triggered.has(allEntries[i].target)) continue;
           triggered.add(allEntries[i].target);
           const cbs = callbacks.get(allEntries[i].target);
           cbs == null ? void 0 : cbs.forEach((cb) => cb(allEntries[i], obs));
@@ -120,8 +117,7 @@ function createResizeObserver() {
         return;
       }
       const cbIndex = cbs.indexOf(callback);
-      if (cbIndex !== -1)
-        cbs.splice(cbIndex, 1);
+      if (cbIndex !== -1) cbs.splice(cbIndex, 1);
       callbacks.set(target, cbs);
     }
   };
@@ -149,8 +145,7 @@ import * as React2 from "react";
 function useObservableState(observable, startWith) {
   const [state, setState] = React2.useState(startWith);
   React2.useEffect(() => {
-    if (typeof window === "undefined" || !observable)
-      return;
+    if (typeof window === "undefined" || !observable) return;
     const subscription = observable.subscribe(setState);
     return () => subscription.unsubscribe();
   }, [observable]);
@@ -313,8 +308,7 @@ function useClearPinButton(props) {
       className,
       disabled: !(state == null ? void 0 : state.length),
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "clear_pin" });
+        if (dispatch) dispatch({ msg: "clear_pin" });
       }
     });
     return mergedProps;
@@ -539,8 +533,7 @@ function useLiveKitRoom(props) {
     return mergeProps(rest, { className });
   }, [rest]);
   React17.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     const onSignalConnected = () => {
       const localP = room.localParticipant;
       log.debug("trying to publish local tracks");
@@ -566,8 +559,7 @@ function useLiveKitRoom(props) {
     };
   }, [room, audio, video, screen, onError, onEncryptionError, onMediaDeviceFailure]);
   React17.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     if (simulateParticipants) {
       room.simulateParticipants({
         participants: {
@@ -609,17 +601,14 @@ function useLiveKitRoom(props) {
     simulateParticipants
   ]);
   React17.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     const connectionStateChangeListener = (state) => {
       switch (state) {
         case ConnectionState2.Disconnected:
-          if (onDisconnected)
-            onDisconnected();
+          if (onDisconnected) onDisconnected();
           break;
         case ConnectionState2.Connected:
-          if (onConnected)
-            onConnected();
+          if (onConnected) onConnected();
           break;
         default:
           break;
@@ -631,8 +620,7 @@ function useLiveKitRoom(props) {
     };
   }, [token, onConnected, onDisconnected, room]);
   React17.useEffect(() => {
-    if (!room)
-      return;
+    if (!room) return;
     return () => {
       log.info("disconnecting on onmount");
       room.disconnect();
@@ -727,8 +715,7 @@ function useMediaDeviceSelect({
   React20.useEffect(() => {
     const listener = activeDeviceObservable.subscribe((deviceId) => {
       log2.info("setCurrentDeviceId", deviceId);
-      if (deviceId)
-        setCurrentDeviceId(deviceId);
+      if (deviceId) setCurrentDeviceId(deviceId);
     });
     return () => {
       listener == null ? void 0 : listener.unsubscribe();
@@ -1079,10 +1066,8 @@ function useSwipe(element, options = {}) {
     const distance = touchStart.current - touchEnd.current;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    if (isLeftSwipe && options.onLeftSwipe)
-      options.onLeftSwipe();
-    if (isRightSwipe && options.onRightSwipe)
-      options.onRightSwipe();
+    if (isLeftSwipe && options.onLeftSwipe) options.onLeftSwipe();
+    if (isRightSwipe && options.onRightSwipe) options.onRightSwipe();
   }, [minSwipeDistance, options]);
   React36.useEffect(() => {
     const elementCopy = element.current;
@@ -1111,8 +1096,7 @@ function useChatToggle({ props }) {
     return mergeProps(props, {
       className,
       onClick: () => {
-        if (dispatch)
-          dispatch({ msg: "toggle_chat" });
+        if (dispatch) dispatch({ msg: "toggle_chat" });
       },
       "aria-pressed": (state == null ? void 0 : state.showChat) == "show_chat" ? "true" : "false",
       "data-lk-unread-msgs": state ? state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+" : "0"
