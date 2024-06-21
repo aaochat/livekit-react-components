@@ -5135,7 +5135,7 @@ function CallUser(_a) {
     "onMemberButtonClick",
     "contactsList"
   ]);
-  var _a2, _b2;
+  var _a2;
   const participants = useParticipants();
   let [contacts, setContacts] = React135.useState([]);
   let [allcontacts, setAllContacts] = React135.useState([]);
@@ -5543,31 +5543,24 @@ function CallUser(_a) {
         onClick: sendInvite
       },
       "Invite"
-    )))))), /* @__PURE__ */ React135.createElement(
-      "div",
-      {
-        style: ((_b2 = props == null ? void 0 : props.style) == null ? void 0 : _b2.display) == "grid" ? { height: "80vh", overflow: "auto" } : {}
-      },
-      activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-        return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name), /* @__PURE__ */ React135.createElement(
-          "button",
-          {
-            disabled: invitedUsers.includes(user.user_id),
-            className: `lk-button   ${invitedUsers.includes(user.user_id) ? "lk-secondary" : "lk-success"}`,
-            style: {
-              marginRight: "3px",
-              marginBottom: "3px",
-              cursor: `${invitedUsers.includes(user.user_id) ? "inherit" : "pointer"}`
-            },
-            onClick: () => calling(user.user_id)
+    )))))), activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "80vh" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
+      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name), /* @__PURE__ */ React135.createElement(
+        "button",
+        {
+          disabled: invitedUsers.includes(user.user_id),
+          className: `lk-button   ${invitedUsers.includes(user.user_id) ? "lk-secondary" : "lk-success"}`,
+          style: {
+            marginRight: "3px",
+            marginBottom: "3px",
+            cursor: `${invitedUsers.includes(user.user_id) ? "inherit" : "pointer"}`
           },
-          invitedUsers.includes(user.user_id) ? "Invited" : "Call"
-        )));
-      })),
-      activeTab == "callParticipants" && /* @__PURE__ */ React135.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
-        return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : "-"), /* @__PURE__ */ React135.createElement("div", null, "\xA0")));
-      }))
-    ))
+          onClick: () => calling(user.user_id)
+        },
+        invitedUsers.includes(user.user_id) ? "Invited" : "Call"
+      )));
+    })), activeTab == "callParticipants" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "80vh" }, className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
+      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : "-"), /* @__PURE__ */ React135.createElement("div", null, "\xA0")));
+    })))
   );
 }
 
