@@ -5184,6 +5184,7 @@ function CallUser(_a) {
   const queryParams = new URLSearchParams(window.location.search);
   const token = queryParams.get("token");
   const authKey = queryParams.get("authKey");
+  const invitedOnCall = queryParams.get("invited");
   function calling(id) {
     return __async(this, null, function* () {
       const response = yield fetch(
@@ -5266,7 +5267,7 @@ function CallUser(_a) {
   };
   React135.useEffect(() => {
     usersList2();
-  }, []);
+  }, [CHAT_SERVER_URL]);
   const ulRef = React135.useRef(null);
   const ulRef2 = React135.useRef(null);
   const handleKeyPress = (event) => {
@@ -5441,7 +5442,7 @@ function CallUser(_a) {
           },
           "Participants"
         ),
-        /* @__PURE__ */ React135.createElement(
+        !invitedOnCall && /* @__PURE__ */ React135.createElement(
           "button",
           {
             type: "button",
