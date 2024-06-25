@@ -4198,7 +4198,7 @@ function ShareLink(_a) {
       onChange: handleSubmit
     }
   )) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React122.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
-    return /* @__PURE__ */ React122.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React122.createElement("div", null, /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name)), /* @__PURE__ */ React122.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
+    return /* @__PURE__ */ React122.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React122.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name)), /* @__PURE__ */ React122.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "") : /* @__PURE__ */ React122.createElement(React122.Fragment, null));
 }
 
@@ -5406,77 +5406,37 @@ function CallUser(_a) {
     /* @__PURE__ */ React135.createElement("div", { style: { height: "-webkit-fill-available" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "sticky", top: 0, zIndex: 1 } }, /* @__PURE__ */ React135.createElement(
       "div",
       {
-        style: {
-          display: "flex",
-          marginBottom: "inherit",
-          justifyContent: "space-between",
-          alignItems: "center",
-          position: "sticky"
-        }
+        className: "tl-invite-buttons"
       },
       /* @__PURE__ */ React135.createElement(
-        "div",
+        "button",
         {
-          style: {
-            display: "flex",
-            marginRight: "12%",
-            marginBottom: "inherit",
-            justifyContent: "center",
-            alignItems: "center"
-          }
+          type: "button",
+          className: "lk-button lk-chat-form-button",
+          "aria-pressed": activeTab === "callParticipants",
+          onClick: () => handleTabChange("callParticipants")
         },
-        /* @__PURE__ */ React135.createElement(
-          "button",
-          {
-            type: "button",
-            style: {
-              borderBottom: activeTab === "callParticipants" ? "2px solid gold" : "none ",
-              backgroundColor: "transparent",
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              cursor: "pointer",
-              padding: "10px"
-            },
-            onClick: () => handleTabChange("callParticipants")
-          },
-          "Participants"
-        ),
-        !invitedOnCall && /* @__PURE__ */ React135.createElement(
-          "button",
-          {
-            type: "button",
-            className: "outline-none",
-            style: {
-              borderBottom: activeTab === "contacts" ? "2px solid gold" : "none",
-              backgroundColor: "transparent",
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              cursor: "pointer",
-              padding: "10px"
-            },
-            onClick: () => handleTabChange("contacts")
-          },
-          "Contacts"
-        ),
-        /* @__PURE__ */ React135.createElement(
-          "button",
-          {
-            type: "button",
-            style: {
-              borderBottom: activeTab === "invite" ? "2px solid gold" : "none ",
-              backgroundColor: "transparent",
-              borderTop: "none",
-              borderLeft: "none",
-              borderRight: "none",
-              cursor: "pointer",
-              padding: "10px"
-            },
-            onClick: () => handleTabChange("invite")
-          },
-          "Invite"
-        )
+        "Participants"
+      ),
+      !invitedOnCall && /* @__PURE__ */ React135.createElement(
+        "button",
+        {
+          type: "button",
+          className: "lk-button lk-chat-form-button",
+          "aria-pressed": activeTab === "contacts",
+          onClick: () => handleTabChange("contacts")
+        },
+        "Contacts"
+      ),
+      /* @__PURE__ */ React135.createElement(
+        "button",
+        {
+          type: "button",
+          className: "lk-button lk-chat-form-button",
+          "aria-pressed": activeTab === "invite",
+          onClick: () => handleTabChange("invite")
+        },
+        "Invite"
       )
     ), activeTab != "invite" && /* @__PURE__ */ React135.createElement(
       "form",
@@ -5545,7 +5505,7 @@ function CallUser(_a) {
       },
       "Invite"
     )))))), activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", null, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.user_name), /* @__PURE__ */ React135.createElement(
+      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.user_name), /* @__PURE__ */ React135.createElement(
         "button",
         {
           disabled: invitedUsers.includes(user.user_id),
