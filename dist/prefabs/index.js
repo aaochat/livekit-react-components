@@ -3446,6 +3446,9 @@ function InviteViaPhone(_a2) {
     setSelectedValue(event);
   };
   const customStyles = {
+    container: (provided) => __spreadProps(__spreadValues({}, provided), {
+      width: "100%"
+    }),
     control: (provided) => __spreadProps(__spreadValues({}, provided), {
       backgroundColor: "#2b2b2b",
       borderColor: "hsl(0deg 0% 11.76%)",
@@ -9274,7 +9277,7 @@ function CallUser(_a2) {
         invitedUsers.includes(user.user_id) ? "Invited" : "Call"
       )));
     })), activeTab == "callParticipants" && /* @__PURE__ */ React113.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
-      return /* @__PURE__ */ React113.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React113.createElement("div", null, /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-"), /* @__PURE__ */ React113.createElement("div", null, "\xA0")));
+      return /* @__PURE__ */ React113.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React113.createElement("div", { style: { width: "100%", display: "flex", flexDirection: "column" } }, /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-")));
     })))
   );
 }
