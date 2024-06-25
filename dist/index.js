@@ -3969,10 +3969,10 @@ var import_components_core55 = require("@livekit/components-core");
 
 // src/prefabs/InviteViaPhone.tsx
 var React120 = __toESM(require("react"));
+var import_react_select = __toESM(require("react-select"));
 function InviteViaPhone(_a2) {
   var _b = _a2, { link, room_name, participant, isCallScreen } = _b, props = __objRest(_b, ["link", "room_name", "participant", "isCallScreen"]);
   const selectRef = React120.useRef(null);
-  const [defaultValue, setDefaultValue] = React120.useState("+1");
   const inputRef = React120.useRef(null);
   const [showToast, setShowToast] = React120.useState(false);
   const [countries, setCountries] = React120.useState([]);
@@ -3985,7 +3985,10 @@ function InviteViaPhone(_a2) {
     if (inputRef.current && selectRef.current) {
       inputRef.current.value = "";
       selectRef.current.value = "";
-      setDefaultValue("+1");
+      setSelectedValue({
+        value: "+1",
+        label: "+1"
+      });
     }
   }
   function handleSubmit(event) {
@@ -4051,12 +4054,42 @@ function InviteViaPhone(_a2) {
       }, 3e3);
     }
   }, [showToast]);
-  function changeValue() {
-    if (selectRef.current) {
-      setDefaultValue(selectRef.current.value);
+  const [selectedValue, setSelectedValue] = React120.useState({
+    value: "+1",
+    label: "+1"
+  });
+  const handleChange = (event) => {
+    setSelectedValue(event);
+  };
+  const customStyles = {
+    control: (provided) => __spreadProps(__spreadValues({}, provided), {
+      backgroundColor: "#2b2b2b",
+      borderColor: "hsl(0deg 0% 11.76%)",
+      color: "white"
+    }),
+    singleValue: (provided) => __spreadProps(__spreadValues({}, provided), {
+      color: "white"
+    }),
+    option: (provided) => __spreadProps(__spreadValues({}, provided), {
+      color: "black"
+    }),
+    menu: (provided) => __spreadProps(__spreadValues({}, provided), {
+      backgroundColor: "white"
+    })
+  };
+  return /* @__PURE__ */ React120.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement(
+    import_react_select.default,
+    {
+      value: selectedValue,
+      onChange: handleChange,
+      options: countries.map((country) => ({
+        value: country.dial_code,
+        label: `${country.dial_code}`
+      })),
+      styles: customStyles,
+      placeholder: "Select your country"
     }
-  }
-  return /* @__PURE__ */ React120.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement("select", { className: "lk-form-control lk-chat-form-input tl-select", ref: selectRef, value: defaultValue, onChange: changeValue }, countries.map((country) => /* @__PURE__ */ React120.createElement("option", { value: country.dial_code }, country.dial_code, " - ", country.name))), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", ref: inputRef, placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10 }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
+  ), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", ref: inputRef, placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10 }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
 }
 
 // src/prefabs/InviteViaEmail.tsx
@@ -9460,7 +9493,7 @@ function Users(_a2) {
 
 // src/prefabs/CallUser.tsx
 var React135 = __toESM(require("react"));
-var import_react_select = __toESM(require("react-select"));
+var import_react_select2 = __toESM(require("react-select"));
 function CallUser(_a2) {
   var _b = _a2, {
     socket,
@@ -9489,8 +9522,8 @@ function CallUser(_a2) {
   const [timeoutIds, setTimeoutIds] = React135.useState([]);
   const [countries, setCountries] = React135.useState([]);
   const [selectedValue, setSelectedValue] = React135.useState({
-    value: "",
-    label: ""
+    value: "+1",
+    label: "+1"
   });
   React135.useEffect(() => {
     fetch(`/country-list.json`).then((res) => __async(this, null, function* () {
@@ -9509,7 +9542,6 @@ function CallUser(_a2) {
     }
   }, [socket]);
   const handleChange = (event) => {
-    console.log(event);
     setSelectedValue(event);
   };
   const handleTabChange = (tab) => {
@@ -9693,7 +9725,7 @@ function CallUser(_a2) {
   const renderInputField = () => {
     if (selectedOption === "phone") {
       return /* @__PURE__ */ React135.createElement(React135.Fragment, null, /* @__PURE__ */ React135.createElement("div", { style: { minWidth: "100px" } }, /* @__PURE__ */ React135.createElement(
-        import_react_select.default,
+        import_react_select2.default,
         {
           value: selectedValue,
           onChange: handleChange,
