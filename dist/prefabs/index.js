@@ -3722,7 +3722,7 @@ function ShareLink(_a2) {
       onChange: handleSubmit
     }
   )) : /* @__PURE__ */ React100.createElement(React100.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React100.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
-    return /* @__PURE__ */ React100.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React100.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body lk-message-text" }, user.user_name)), /* @__PURE__ */ React100.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
+    return /* @__PURE__ */ React100.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React100.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation)), /* @__PURE__ */ React100.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "") : /* @__PURE__ */ React100.createElement(React100.Fragment, null));
 }
 
@@ -9227,7 +9227,7 @@ function CallUser(_a2) {
       },
       "Invite"
     )))))), activeTab == "contacts" && /* @__PURE__ */ React113.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-      return /* @__PURE__ */ React113.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React113.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.user_name), /* @__PURE__ */ React113.createElement(
+      return /* @__PURE__ */ React113.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React113.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React113.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation), /* @__PURE__ */ React113.createElement(
         "button",
         {
           disabled: invitedUsers.includes(user.user_id),
