@@ -9770,7 +9770,7 @@ function CallUser(_a2) {
   return /* @__PURE__ */ React135.createElement(
     "div",
     __spreadProps(__spreadValues({}, props), {
-      className: "lk-chat lk-users"
+      className: "lk-chat lk-sharelink"
     }),
     /* @__PURE__ */ React135.createElement("div", { style: { height: "-webkit-fill-available" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ React135.createElement("div", { style: { position: "sticky", top: 0, zIndex: 1 } }, /* @__PURE__ */ React135.createElement(
       "div",
@@ -9874,7 +9874,7 @@ function CallUser(_a2) {
       },
       "Invite"
     )))))), activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation), /* @__PURE__ */ React135.createElement(
+      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation)), /* @__PURE__ */ React135.createElement(
         "button",
         {
           disabled: invitedUsers.includes(user.user_id),
@@ -9887,7 +9887,7 @@ function CallUser(_a2) {
           onClick: () => calling(user.user_id)
         },
         invitedUsers.includes(user.user_id) ? "Invited" : "Call"
-      )));
+      ));
     })), activeTab == "callParticipants" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
       return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%", display: "flex", flexDirection: "column" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-")));
     })))
