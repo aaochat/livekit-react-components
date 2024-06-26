@@ -4128,6 +4128,7 @@ function InviteViaEmail(_a2) {
       if (inputRef.current && inputRef.current.value.trim() !== "") {
         const email = inputRef.current.value;
         setEmpty();
+        setShowToast(true);
         if (isCallScreen) {
           const queryParams = new URLSearchParams(window.location.search);
           const token = queryParams.get("token");
@@ -4147,7 +4148,6 @@ function InviteViaEmail(_a2) {
           };
           fetch(`/api/invite-call-email-phone`, data).then((res) => __async(this, null, function* () {
             if (res.ok) {
-              setShowToast(true);
             } else {
               throw Error("Error fetching server url, check server logs");
             }
@@ -4169,7 +4169,6 @@ function InviteViaEmail(_a2) {
           };
           fetch(`/api/invite-email`, data).then((res) => __async(this, null, function* () {
             if (res.ok) {
-              setShowToast(true);
             } else {
               throw Error("Error fetching server url, check server logs");
             }
