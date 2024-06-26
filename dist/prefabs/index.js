@@ -3377,10 +3377,9 @@ function InviteViaPhone(_a2) {
   }
   function handleSubmit(event) {
     return __async(this, null, function* () {
-      var _a3;
       event.preventDefault();
       if (inputRef.current && inputRef.current.value.trim() !== "") {
-        const number = ((_a3 = selectRef.current) == null ? void 0 : _a3.value) + inputRef.current.value;
+        const number = selectedValue.value + inputRef.current.value;
         setEmpty();
         if (isCallScreen) {
           const queryParams = new URLSearchParams(window.location.search);
@@ -3464,7 +3463,7 @@ function InviteViaPhone(_a2) {
       backgroundColor: "white"
     })
   };
-  return /* @__PURE__ */ React98.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React98.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React98.createElement(React98.Fragment, null), /* @__PURE__ */ React98.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React98.createElement(
+  return /* @__PURE__ */ React98.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React98.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React98.createElement(React98.Fragment, null), /* @__PURE__ */ React98.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React98.createElement(
     import_react_select.default,
     {
       value: selectedValue,
@@ -3757,7 +3756,7 @@ function ShareLink(_a2) {
       placeholder: "Search User...",
       onChange: handleSubmit
     }
-  )) : /* @__PURE__ */ React100.createElement(React100.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React100.createElement("ul", { className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
+  )) : /* @__PURE__ */ React100.createElement(React100.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React100.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
     return /* @__PURE__ */ React100.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React100.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React100.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation)), /* @__PURE__ */ React100.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "") : /* @__PURE__ */ React100.createElement(React100.Fragment, null));
 }
@@ -9247,7 +9246,7 @@ function CallUser(_a2) {
         htmlFor: "email"
       },
       "Email"
-    ))), /* @__PURE__ */ React113.createElement("div", { className: "lk-chat-form" }, renderInputField(), /* @__PURE__ */ React113.createElement(
+    ))), /* @__PURE__ */ React113.createElement("div", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" } }, renderInputField(), /* @__PURE__ */ React113.createElement(
       "button",
       {
         disabled: !(selectedOption === "phone" && mobile && selectedValue.value || selectedOption === "email" && isValidEmail(email) && email) || disableButton,
