@@ -4709,6 +4709,7 @@ function CallUser(_a) {
     value: "+1",
     label: "+1"
   });
+  const [showToast, setShowToast] = React113.useState(false);
   React113.useEffect(() => {
     fetch(`/country-list.json`).then((res) => __async(this, null, function* () {
       setCountries(yield res.json());
@@ -4889,7 +4890,7 @@ function CallUser(_a) {
         });
         setEmail("");
         const jsonResponse = yield response.json();
-        alert(jsonResponse.message);
+        setShowToast(jsonResponse.message);
       }
     }
   });
@@ -4971,11 +4972,19 @@ function CallUser(_a) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email2).toLowerCase());
   };
+  React113.useEffect(() => {
+    if (showToast) {
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3e3);
+    }
+  }, [showToast]);
   return /* @__PURE__ */ React113.createElement(
     "div",
     __spreadProps(__spreadValues({}, props), {
       className: "lk-chat lk-sharelink"
     }),
+    showToast ? /* @__PURE__ */ React113.createElement(Toast, { className: "lk-toast-connection-state" }, showToast) : /* @__PURE__ */ React113.createElement(React113.Fragment, null),
     /* @__PURE__ */ React113.createElement("div", { style: { height: "-webkit-fill-available" } }, /* @__PURE__ */ React113.createElement("div", { style: { position: "relative" } }, /* @__PURE__ */ React113.createElement("div", { style: { position: "sticky", top: 0, zIndex: 1 } }, /* @__PURE__ */ React113.createElement(
       "div",
       {
