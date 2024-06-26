@@ -2501,6 +2501,7 @@ function PreJoin(_a2) {
     "userLabel",
     "persistUserChoices"
   ]);
+  var _a3;
   const [userChoices, setUserChoices] = React71.useState(defaultUserChoices);
   const partialDefaults = __spreadValues(__spreadValues(__spreadValues(__spreadValues(__spreadValues({}, defaults.audioDeviceId !== void 0 && { audioDeviceId: defaults.audioDeviceId }), defaults.videoDeviceId !== void 0 && { videoDeviceId: defaults.videoDeviceId }), defaults.audioEnabled !== void 0 && { audioEnabled: defaults.audioEnabled }), defaults.videoEnabled !== void 0 && { videoEnabled: defaults.videoEnabled }), defaults.username !== void 0 && { username: defaults.username });
   const {
@@ -2523,7 +2524,7 @@ function PreJoin(_a2) {
   const [videoDeviceId, setVideoDeviceId] = React71.useState(
     initialUserChoices.videoDeviceId
   );
-  const [username, setUsername] = React71.useState(initialUserChoices.username);
+  const [username, setUsername] = React71.useState((_a3 = defaults.username) != null ? _a3 : initialUserChoices.username);
   React71.useEffect(() => {
     saveAudioInputEnabled(audioEnabled);
   }, [audioEnabled, saveAudioInputEnabled]);
@@ -3438,8 +3439,11 @@ function InviteViaPhone(_a2) {
     value: "+1",
     label: "+1"
   });
-  const handleChange = (event) => {
-    setSelectedValue(event);
+  const handleChange = (selectedCountry) => {
+    setSelectedValue({
+      value: selectedCountry.value,
+      label: selectedCountry.value
+    });
   };
   const customStyles = {
     container: (provided) => __spreadProps(__spreadValues({}, provided), {
@@ -8940,8 +8944,11 @@ function CallUser(_a2) {
       });
     }
   }, [socket]);
-  const handleChange = (event) => {
-    setSelectedValue(event);
+  const handleChange = (selectedCountry) => {
+    setSelectedValue({
+      value: selectedCountry.value,
+      label: selectedCountry.value
+    });
   };
   const handleTabChange = (tab) => {
     setActiveTab(tab);
