@@ -3998,6 +3998,7 @@ function InviteViaPhone(_a2) {
           const queryParams = new URLSearchParams(window.location.search);
           const token = queryParams.get("token");
           const authKey = queryParams.get("authKey");
+          setShowToast(true);
           const data = {
             method: "POST",
             headers: {
@@ -4013,12 +4014,12 @@ function InviteViaPhone(_a2) {
           };
           fetch(`/api/invite-call-email-phone`, data).then((res) => __async(this, null, function* () {
             if (res.ok) {
-              setShowToast(true);
             } else {
               throw Error("Error fetching server url, check server logs");
             }
           }));
         } else {
+          setShowToast(true);
           const data = {
             method: "POST",
             headers: {
@@ -4034,7 +4035,6 @@ function InviteViaPhone(_a2) {
           };
           fetch(`/api/invite-phone`, data).then((res) => __async(this, null, function* () {
             if (res.ok) {
-              setShowToast(true);
             } else {
               throw Error("Error fetching server url, check server logs");
             }
@@ -4083,7 +4083,7 @@ function InviteViaPhone(_a2) {
       onChange: handleChange,
       options: countries.map((country) => ({
         value: country.dial_code,
-        label: `${country.dial_code}`
+        label: `${country.dial_code} - ${country.code}`
       })),
       styles: customStyles,
       placeholder: "Select your country"
@@ -9730,7 +9730,7 @@ function CallUser(_a2) {
           onChange: handleChange,
           options: countries.map((country) => ({
             value: country.dial_code,
-            label: `${country.dial_code}`
+            label: `${country.dial_code} - ${country.code}`
           })),
           styles: customStyles,
           placeholder: "Select your country"
@@ -9874,7 +9874,7 @@ function CallUser(_a2) {
       },
       "Invite"
     )))))), activeTab == "contacts" && /* @__PURE__ */ React135.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation)), /* @__PURE__ */ React135.createElement(
+      return /* @__PURE__ */ React135.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React135.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React135.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-")), /* @__PURE__ */ React135.createElement(
         "button",
         {
           disabled: invitedUsers.includes(user.user_id),
