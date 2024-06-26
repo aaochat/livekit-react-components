@@ -10,6 +10,7 @@ export interface InviteViaPhoneEmailProps {
     room_name: string;
     participant: string | undefined;
     isCallScreen: boolean;
+    style?: React.CSSProperties;
 }
-export declare function InviteViaPhone({ link, room_name, participant, isCallScreen, ...props }: InviteViaPhoneEmailProps): React.JSX.Element;
+export declare function InviteViaPhone({ link, room_name, participant, isCallScreen, style, ...props }: InviteViaPhoneEmailProps): React.JSX.Element;
 //# sourceMappingURL=InviteViaPhone.d.ts.map

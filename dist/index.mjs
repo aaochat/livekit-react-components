@@ -3652,8 +3652,8 @@ function PreJoin(_a) {
     saveAudioInputDeviceId,
     saveAudioInputEnabled,
     saveVideoInputDeviceId,
-    saveVideoInputEnabled,
-    saveUsername
+    saveVideoInputEnabled
+    // saveUsername,
   } = usePersistentUserChoices({
     defaults: partialDefaults,
     preventSave: !persistUserChoices,
@@ -3680,9 +3680,6 @@ function PreJoin(_a) {
   React119.useEffect(() => {
     saveVideoInputDeviceId(videoDeviceId);
   }, [videoDeviceId, saveVideoInputDeviceId]);
-  React119.useEffect(() => {
-    saveUsername(username);
-  }, [username, saveUsername]);
   const tracks = usePreviewTracks(
     {
       audio: audioEnabled ? { deviceId: initialUserChoices.audioDeviceId } : false,
@@ -3831,7 +3828,7 @@ import { setupParticipantName as setupParticipantName2 } from "@livekit/componen
 import * as React120 from "react";
 import Select from "react-select";
 function InviteViaPhone(_a) {
-  var _b = _a, { link, room_name, participant, isCallScreen } = _b, props = __objRest(_b, ["link", "room_name", "participant", "isCallScreen"]);
+  var _b = _a, { link, room_name, participant, isCallScreen, style } = _b, props = __objRest(_b, ["link", "room_name", "participant", "isCallScreen", "style"]);
   const selectRef = React120.useRef(null);
   const inputRef = React120.useRef(null);
   const [showToast, setShowToast] = React120.useState(false);
@@ -3939,7 +3936,7 @@ function InviteViaPhone(_a) {
       backgroundColor: "white"
     })
   };
-  return /* @__PURE__ */ React120.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement(
+  return /* @__PURE__ */ React120.createElement("div", __spreadValues({ style }, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement(
     Select,
     {
       value: selectedValue,
@@ -4223,7 +4220,7 @@ function ShareLink(_a) {
   React122.useEffect(() => {
     setSearched(users);
   }, [inviteVia]);
-  return /* @__PURE__ */ React122.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), !isCallScreen ? /* @__PURE__ */ React122.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React122.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), showToast ? /* @__PURE__ */ React122.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React122.createElement(React122.Fragment, null), /* @__PURE__ */ React122.createElement("div", { className: "tl-invite-buttons" }, /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "chat", onClick: () => showInviteVia("chat") }, "Contact"), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "phone", onClick: () => showInviteVia("phone") }, "Phone"), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "email", onClick: () => showInviteVia("email") }, "Email")), inviteVia === "phone" ? /* @__PURE__ */ React122.createElement(InviteViaPhone, { link, room_name: room.name, participant: participantName, isCallScreen }) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), inviteVia === "email" ? /* @__PURE__ */ React122.createElement(InviteViaEmail, { link, room_name: room.name, participant: participantName, isCallScreen }) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), inviteVia === "chat" ? /* @__PURE__ */ React122.createElement(React122.Fragment, null, showInviteUser ? /* @__PURE__ */ React122.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React122.createElement(
+  return /* @__PURE__ */ React122.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), !isCallScreen ? /* @__PURE__ */ React122.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React122.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), showToast ? /* @__PURE__ */ React122.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React122.createElement(React122.Fragment, null), /* @__PURE__ */ React122.createElement("div", { className: "tl-invite-buttons" }, /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "chat", onClick: () => showInviteVia("chat") }, "Contact"), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "phone", onClick: () => showInviteVia("phone") }, "Phone"), /* @__PURE__ */ React122.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "email", onClick: () => showInviteVia("email") }, "Email")), /* @__PURE__ */ React122.createElement(InviteViaPhone, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "phone" ? "block" : "none" } }), /* @__PURE__ */ React122.createElement(InviteViaEmail, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "email" ? "block" : "none" } }), inviteVia === "chat" ? /* @__PURE__ */ React122.createElement(React122.Fragment, null, showInviteUser ? /* @__PURE__ */ React122.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React122.createElement(
     "input",
     {
       className: "lk-form-control lk-chat-form-input",
@@ -4233,7 +4230,7 @@ function ShareLink(_a) {
       onChange: handleSubmit
     }
   )) : /* @__PURE__ */ React122.createElement(React122.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React122.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user, index) => {
-    return /* @__PURE__ */ React122.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React122.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation)), /* @__PURE__ */ React122.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
+    return /* @__PURE__ */ React122.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React122.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React122.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : "&nbsp;")), /* @__PURE__ */ React122.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (user.invited ? " invited" : "") }, user.invited ? "Invited" : "Invite"));
   })) : "") : /* @__PURE__ */ React122.createElement(React122.Fragment, null));
 }
 
