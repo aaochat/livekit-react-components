@@ -3933,10 +3933,26 @@ function InviteViaPhone(_a) {
       color: "black"
     }),
     menu: (provided) => __spreadProps(__spreadValues({}, provided), {
-      backgroundColor: "white"
+      backgroundColor: "white",
+      width: "130px"
+    }),
+    menuList: (base) => __spreadProps(__spreadValues({}, base), {
+      // height: "100px",
+      "::-webkit-scrollbar": {
+        width: "5px"
+      },
+      "::-webkit-scrollbar-track": {
+        background: "#000"
+      },
+      "::-webkit-scrollbar-thumb": {
+        background: "#888"
+      },
+      "::-webkit-scrollbar-thumb:hover": {
+        background: "#555"
+      }
     })
   };
-  return /* @__PURE__ */ React120.createElement("div", __spreadValues({ style }, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement(
+  return /* @__PURE__ */ React120.createElement("div", __spreadValues({ style }, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement("div", { style: { minWidth: "100px", maxWidth: "150px" } }, /* @__PURE__ */ React120.createElement(
     Select,
     {
       value: selectedValue,
@@ -3948,7 +3964,7 @@ function InviteViaPhone(_a) {
       styles: customStyles,
       placeholder: "Select your country"
     }
-  ), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", ref: inputRef, placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10 }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
+  )), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", ref: inputRef, placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10 }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
 }
 
 // src/prefabs/InviteViaEmail.tsx
@@ -5380,12 +5396,28 @@ function CallUser(_a) {
       color: "black"
     }),
     menu: (provided) => __spreadProps(__spreadValues({}, provided), {
-      backgroundColor: "white"
+      backgroundColor: "white",
+      width: "130px"
+    }),
+    menuList: (base) => __spreadProps(__spreadValues({}, base), {
+      // height: "100px",
+      "::-webkit-scrollbar": {
+        width: "5px"
+      },
+      "::-webkit-scrollbar-track": {
+        background: "#000"
+      },
+      "::-webkit-scrollbar-thumb": {
+        background: "#888"
+      },
+      "::-webkit-scrollbar-thumb:hover": {
+        background: "#555"
+      }
     })
   };
   const renderInputField = () => {
     if (selectedOption === "phone") {
-      return /* @__PURE__ */ React135.createElement(React135.Fragment, null, /* @__PURE__ */ React135.createElement("div", { style: { minWidth: "100px" } }, /* @__PURE__ */ React135.createElement(
+      return /* @__PURE__ */ React135.createElement(React135.Fragment, null, /* @__PURE__ */ React135.createElement("div", { style: { minWidth: "100px", maxWidth: "150px" } }, /* @__PURE__ */ React135.createElement(
         Select2,
         {
           value: selectedValue,
