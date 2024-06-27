@@ -6,6 +6,7 @@ import { setupParticipantName } from '@livekit/components-core';
 import { useObservableState } from '../hooks/internal';
 import { InviteViaPhone } from './InviteViaPhone';
 import { InviteViaEmail } from './InviteViaEmail';
+import { useToast } from '../hooks/useToast';
 
 export function useGetLink() {
   const host = getHostUrl();
@@ -61,9 +62,10 @@ export function ShareLink({ isCallScreen, ...props }: ShareLinkProps) {
   const { link } = useGetLink();
   const [users, setUsers] = React.useState<User[]>([]);
   const [searched, setSearched] = React.useState<User[]>([]);
-  const [showToast, setShowToast] = React.useState<boolean>(false);
+  const { showToast, setShowToast } = useToast();
   const [inviteVia, setInviteVia] = React.useState<string>('chat');
-
+  const [invitedUsers, setInvitedUsers] =
+    React.useState<string[]>([]);
   function showInviteVia(type: string) {
     setInviteVia(type);
   }
@@ -131,7 +133,7 @@ export function ShareLink({ isCallScreen, ...props }: ShareLinkProps) {
   }
 
   async function handleInvite(user: User) {
-    setInvitedFirst(user, true);
+    setInvitedUsers((prevUser) => [...prevUser, user.user_id]);
     let data = {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
@@ -159,31 +161,7 @@ export function ShareLink({ isCallScreen, ...props }: ShareLinkProps) {
 
     fetch(`/api/invite-user`, data).then(async (res) => {
       if (res.ok) {
-        setInvitedFirst(user, false);
-        // user.invited = true;
-        // // 1. Find the user with the provided id
-        // const currentUserIndex = users.findIndex((item) => item.user_id === user.user_id);
-        // // 2. Mark the user as invited
-        // const updatedUser = { ...users[currentUserIndex], invited: true };
-        // // 3. Update the todo list with the updated todo
-        // const newUsers = [
-        //   ...users.slice(0, currentUserIndex),
-        //   updatedUser,
-        //   ...users.slice(currentUserIndex + 1)
-        // ];
-        // setUsers(newUsers);
-
-        // // 1. Find the user with the provided id
-        // const currentSearchedIndex = searched.findIndex((item) => item.user_id === user.user_id);
-        // // 2. Mark the todo as complete
-        // const updatedSearched = { ...searched[currentSearchedIndex], invited: true };
-        // // 3. Update the todo list with the updated todo
-        // const newSearched = [
-        //   ...searched.slice(0, currentSearchedIndex),
-        //   updatedSearched,
-        //   ...searched.slice(currentSearchedIndex + 1)
-        // ];
-        // setSearched(newSearched);
+        // setInvitedFirst(user, false);
       } else {
         throw Error('Error fetching server url, check server logs');
       }
@@ -218,59 +196,24 @@ export function ShareLink({ isCallScreen, ...props }: ShareLinkProps) {
     }
   }, [p]);
 
-  async function setInvitedFirst(user: User, valueToSet: boolean = true) {
-    user.invited = valueToSet;
+  // async function setInvitedFirst(user: User, valueToSet: boolean = true) {
+  //   user.invited = valueToSet;
 
-    const newUsers = users.map((item) =>
-      item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
-    );
-    setUsers(newUsers);
+  //   const newUsers = users.map((item) =>
+  //     item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
+  //   );
+  //   setUsers(newUsers);
 
-    const newSearched = searched.map((item) =>
-      item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
-    );
-    setSearched(newSearched);
-  }
-
-  // async function handleInvite(user: User) {
-  //   setInvitedFirst(user, true);
-  //   const data = {
-  //     method: "POST", // *GET, POST, PUT, DELETE, etc.
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       "userId": user.user_id, // body data type must match "Content-Type" header
-  //       "userName": user.full_name, // body data type must match "Content-Type" header
-  //       "message": link,
-  //       "meeting_id": room.name,
-  //       "token": getToken(),
-  //       "domain": getDomainIdentifier()
-  //     })
-  //   };
-
-  //   fetch(`/api/invite-user`, data).then(async (res) => {
-  //     if (res.ok) {
-
-  //     } else {
-  //       setInvitedFirst(user, false);
-  //       throw Error('Error fetching server url, check server logs');
-  //     }
-  //   });
+  //   const newSearched = searched.map((item) =>
+  //     item.user_id === user.user_id ? { ...item, invited: valueToSet } : item
+  //   );
+  //   setSearched(newSearched);
   // }
 
   async function handleCopy() {
     navigator.clipboard.writeText(link);
     setShowToast(true);
   }
-
-  React.useEffect(() => {
-    if (showToast) {
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000)
-    }
-  }, [showToast]);
 
   React.useEffect(() => {
     if (ulRef) {
@@ -327,22 +270,21 @@ export function ShareLink({ isCallScreen, ...props }: ShareLinkProps) {
           ) : (<></>)}
 
           {showInviteUser && searched.length > 0 ? (
-            <ul style={{ height: "77vh", overflow: "scroll", display: "block" }} className="lk-list lk-chat-messages" ref={ulRef}>
-              {searched.map((user, index) => {
+            <ul style={{ height: "70vh", display: "block" }} className="lk-list lk-chat-messages" ref={ulRef}>
+              {searched.map((user) => {
                 return (
-                  <li key={index} className="lk-chat-entry">
+                  <li key={user.user_id} className="lk-chat-entry">
                     <div style={{ width: "100%" }}>
                       <span className="lk-message-body">{user.full_name}</span>
                       <span className="lk-message-body lk-message-text">{user.designation ? user.designation : '-'}</span>
                     </div>
 
-                    <button type="button" onClick={() => handleInvite(user)} className={"lk-button lk-chat-form-button" + (user.invited ? ' invited' : '')}>
-                      {user.invited ? 'Invited' : 'Invite'}
+                    <button type="button" onClick={() => handleInvite(user)} className={"lk-button lk-chat-form-button" + (invitedUsers.includes(user.user_id) ? ' invited' : '')}>
+                      {invitedUsers.includes(user.user_id) ? "Invited" : "Invite"}
                     </button>
                   </li>
                 )
-              })
-              }
+              })}
             </ul>
           ) : (
             ''
