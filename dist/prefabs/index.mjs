@@ -4778,6 +4778,7 @@ function CallUser(_a) {
   }, []);
   function usersList2() {
     return __async(this, null, function* () {
+      console.log(CHAT_SERVER_URL);
       const response = yield fetch(`${CHAT_SERVER_URL}/api/user/all-contact`, {
         method: "POST",
         headers: {
