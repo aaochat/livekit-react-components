@@ -3830,8 +3830,7 @@ import * as React120 from "react";
 import Select from "react-select";
 function InviteViaPhone(_a) {
   var _b = _a, { link, room_name, participant, isCallScreen, style } = _b, props = __objRest(_b, ["link", "room_name", "participant", "isCallScreen", "style"]);
-  const selectRef = React120.useRef(null);
-  const inputRef = React120.useRef(null);
+  const [mobile, setMobile] = React120.useState("");
   const [showToast, setShowToast] = React120.useState(false);
   const [countries, setCountries] = React120.useState([]);
   React120.useEffect(() => {
@@ -3840,9 +3839,8 @@ function InviteViaPhone(_a) {
     }));
   }, []);
   function setEmpty() {
-    if (inputRef.current && selectRef.current) {
-      inputRef.current.value = "";
-      selectRef.current.value = "";
+    if (mobile) {
+      setMobile("");
       setSelectedValue({
         value: "+1",
         label: "+1"
@@ -3852,14 +3850,14 @@ function InviteViaPhone(_a) {
   function handleSubmit(event) {
     return __async(this, null, function* () {
       event.preventDefault();
-      if (inputRef.current && inputRef.current.value.trim() !== "") {
-        const number = selectedValue.value + inputRef.current.value;
+      if (mobile && mobile.trim() !== "") {
+        const number = selectedValue.value + mobile;
         setEmpty();
+        setShowToast(number);
         if (isCallScreen) {
           const queryParams = new URLSearchParams(window.location.search);
           const token = queryParams.get("token");
           const authKey = queryParams.get("authKey");
-          setShowToast(true);
           const data = {
             method: "POST",
             headers: {
@@ -3880,7 +3878,6 @@ function InviteViaPhone(_a) {
             }
           }));
         } else {
-          setShowToast(true);
           const data = {
             method: "POST",
             headers: {
@@ -3956,7 +3953,7 @@ function InviteViaPhone(_a) {
       }
     })
   };
-  return /* @__PURE__ */ React120.createElement("div", __spreadValues({ style }, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement("div", { style: { minWidth: "100px", maxWidth: "150px" } }, /* @__PURE__ */ React120.createElement(
+  return /* @__PURE__ */ React120.createElement("div", __spreadValues({ style }, props), showToast ? /* @__PURE__ */ React120.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation sent successfully to ", showToast, ".") : /* @__PURE__ */ React120.createElement(React120.Fragment, null), /* @__PURE__ */ React120.createElement("form", { className: "lk-chat-form", style: { display: "flex", alignItems: "center" }, onSubmit: handleSubmit }, /* @__PURE__ */ React120.createElement("div", { style: { minWidth: "100px", maxWidth: "150px" } }, /* @__PURE__ */ React120.createElement(
     Select,
     {
       value: selectedValue,
@@ -3968,27 +3965,27 @@ function InviteViaPhone(_a) {
       styles: customStyles,
       placeholder: "Select your country"
     }
-  )), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", ref: inputRef, placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10 }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
+  )), /* @__PURE__ */ React120.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "tel", onChange: (e) => setMobile(e.target.value), placeholder: "Enter Mobile Number", pattern: "[0-9]+", title: "Enter valid mobile number", maxLength: 10, minLength: 10, value: mobile }), /* @__PURE__ */ React120.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
 }
 
 // src/prefabs/InviteViaEmail.tsx
 import * as React121 from "react";
 function InviteViaEmail(_a) {
   var _b = _a, { link, room_name, participant, isCallScreen } = _b, props = __objRest(_b, ["link", "room_name", "participant", "isCallScreen"]);
-  const inputRef = React121.useRef(null);
   const [showToast, setShowToast] = React121.useState(false);
+  const [email, setEmail] = React121.useState("");
   function setEmpty() {
-    if (inputRef.current) {
-      inputRef.current.value = "";
+    if (email) {
+      setEmail("");
     }
   }
   function handleSubmit(event) {
     return __async(this, null, function* () {
       event.preventDefault();
-      if (inputRef.current && inputRef.current.value.trim() !== "") {
-        const email = inputRef.current.value;
+      if (email && email.trim() !== "") {
+        let sentMail = email;
         setEmpty();
-        setShowToast(true);
+        setShowToast(sentMail);
         if (isCallScreen) {
           const queryParams = new URLSearchParams(window.location.search);
           const token = queryParams.get("token");
@@ -3999,7 +3996,7 @@ function InviteViaEmail(_a) {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "email": email,
+              "email": sentMail,
               // body data type must match "Content-Type" header
               "token": token,
               "authkey": authKey,
@@ -4020,7 +4017,7 @@ function InviteViaEmail(_a) {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              "email": email,
+              "email": sentMail,
               // body data type must match "Content-Type" header
               "link": link,
               "meeting_id": room_name,
@@ -4044,7 +4041,16 @@ function InviteViaEmail(_a) {
       }, 3e3);
     }
   }, [showToast]);
-  return /* @__PURE__ */ React121.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React121.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation Sent") : /* @__PURE__ */ React121.createElement(React121.Fragment, null), /* @__PURE__ */ React121.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React121.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "email", ref: inputRef, placeholder: "Enter Email" }), /* @__PURE__ */ React121.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
+  return /* @__PURE__ */ React121.createElement("div", __spreadValues({}, props), showToast ? /* @__PURE__ */ React121.createElement(Toast, { className: "lk-toast-connection-state" }, "Invitation sent successfully to ", showToast, ".") : /* @__PURE__ */ React121.createElement(React121.Fragment, null), /* @__PURE__ */ React121.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React121.createElement(
+    "input",
+    {
+      className: "lk-form-control lk-chat-form-input",
+      type: "email",
+      value: email,
+      onChange: (e) => setEmail(e.target.value),
+      placeholder: "Enter Email"
+    }
+  ), /* @__PURE__ */ React121.createElement("button", { type: "submit", className: "lk-button lk-chat-form-button tl-invite-button" }, "Invite")));
 }
 
 // src/prefabs/ShareLink.tsx
