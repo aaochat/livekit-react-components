@@ -16,7 +16,7 @@ export interface UseTrackToggleProps<T extends ToggleSource> extends Omit<TrackT
  * @public
  */
 export declare function useTrackToggle<T extends ToggleSource>({ source, onChange, initialState, captureOptions, ...rest }: UseTrackToggleProps<T>): {
-    toggle: ((forceState?: boolean | undefined) => void) | ((forceState?: boolean | undefined, captureOptions?: import("@livekit/components-core").CaptureOptionsBySource<T> | undefined) => Promise<void>);
+    toggle: (forceState?: boolean | undefined, captureOptions?: import("@livekit/components-core").CaptureOptionsBySource<T> | undefined) => Promise<void>;
     enabled: boolean;
     pending: boolean;
     track: import("livekit-client").LocalTrackPublication | undefined;

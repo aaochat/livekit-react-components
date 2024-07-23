@@ -1,0 +1,1 @@
+{"version":3,"file":"WhiteboardIndicater.d.ts","sourceRoot":"","sources":["../../src/prefabs/WhiteboardIndicater.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B,MAAM,WAAW,wBAAwB;IACrC,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAC3B,cAAc,EAAE,MAAM,IAAI,CAAC;CAC9B;AAED,wBAAgB,mBAAmB,CAAC,EAChC,iBAAiB,EACjB,cAAc,GACjB,EAAE,wBAAwB,qBAqF1B"}

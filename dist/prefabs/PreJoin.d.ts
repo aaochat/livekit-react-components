@@ -1,16 +1,12 @@
 import type { CreateLocalTracksOptions, LocalAudioTrack, LocalTrack, LocalVideoTrack } from 'livekit-client';
+import { Track } from 'livekit-client';
 import * as React from 'react';
-/** @public */
-export type LocalUserChoices = {
-    username: string;
-    videoEnabled: boolean;
-    audioEnabled: boolean;
-    videoDeviceId: string;
-    audioDeviceId: string;
-    e2ee: boolean;
-    sharedPassphrase: string;
-};
-/** @public */
+import type { LocalUserChoices } from '@livekit/components-core';
+export declare const defaultUserChoices: LocalUserChoices;
+/**
+ * Props for the PreJoin component.
+ * @public
+ */
 export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onSubmit' | 'onError'> {
     /** This function is called with the `LocalUserChoices` if validation is passed. */
     onSubmit?: (values: LocalUserChoices) => void;
@@ -27,10 +23,15 @@ export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
     micLabel?: string;
     camLabel?: string;
     userLabel?: string;
-    showE2EEOptions?: boolean;
+    /**
+     * If true, user choices are persisted across sessions.
+     * @defaultValue true
+     * @alpha
+     */
+    persistUserChoices?: boolean;
 }
 /** @alpha */
-export declare function usePreviewTracks(options: CreateLocalTracksOptions, onError?: (err: Error) => void): LocalTrack[] | undefined;
+export declare function usePreviewTracks(options: CreateLocalTracksOptions, onError?: (err: Error) => void): LocalTrack<Track.Kind>[] | undefined;
 /** @public */
 export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioTrack>(enabled: boolean, deviceId: string, kind: 'videoinput' | 'audioinput'): {
     selectedDevice: MediaDeviceInfo | undefined;
@@ -43,7 +44,7 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
  * On submit the user decisions are returned, which can then be passed on to the `LiveKitRoom` so that the user enters the room with the correct media devices.
  *
  * @remarks
- * This component is independent from the `LiveKitRoom` component and don't has to be nested inside it.
+ * This component is independent of the `LiveKitRoom` component and should not be nested within it.
  * Because it only access the local media tracks this component is self contained and works without connection to the LiveKit server.
  *
  * @example
@@ -52,5 +53,5 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
  * ```
  * @public
  */
-export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, showE2EEOptions, ...htmlProps }: PreJoinProps): React.JSX.Element;
+export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, persistUserChoices, ...htmlProps }: PreJoinProps): React.JSX.Element;
 //# sourceMappingURL=PreJoin.d.ts.map

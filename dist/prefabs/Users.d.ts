@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { LocalUserChoices } from './PreJoin';
+import { LocalUserChoices } from '@livekit/components-core';
 /** @public */
 export interface UserProps extends React.HTMLAttributes<HTMLDivElement> {
     onWaitingRoomChange: (state: number) => void;

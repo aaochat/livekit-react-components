@@ -1,10 +1,12 @@
 import * as React from 'react';
 import type { PinContextType } from './pin-context';
-import type { ChatContextType } from './chat-context';
+import type { WidgetContextType } from './chat-context';
+import { WhiteboardContextType } from './whiteboard-context';
 /** @public */
 export type LayoutContextType = {
     pin: PinContextType;
-    widget: ChatContextType;
+    widget: WidgetContextType;
+    whiteboard: WhiteboardContextType;
 };
 /** @public */
 export declare const LayoutContext: React.Context<LayoutContextType | undefined>;
