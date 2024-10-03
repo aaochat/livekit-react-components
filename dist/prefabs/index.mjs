@@ -3752,7 +3752,7 @@ function ShareLink(_a) {
       onChange: handleSubmit
     }
   )) : /* @__PURE__ */ React101.createElement(React101.Fragment, null), showInviteUser && searched.length > 0 ? /* @__PURE__ */ React101.createElement("ul", { style: { height: "70vh", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, searched.map((user) => {
-    return /* @__PURE__ */ React101.createElement("li", { key: user.user_id, className: "lk-chat-entry" }, /* @__PURE__ */ React101.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React101.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React101.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : "-")), /* @__PURE__ */ React101.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (invitedUsers.includes(user.user_id) ? " invited" : "") }, invitedUsers.includes(user.user_id) ? "Invited" : "Invite"));
+    return /* @__PURE__ */ React101.createElement("li", { key: user.user_id, className: "lk-chat-entry" }, /* @__PURE__ */ React101.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React101.createElement("span", { className: "lk-message-body" }, user.full_name), /* @__PURE__ */ React101.createElement("span", { className: "lk-message-body lk-message-text" }, user.designation ? user.designation : user.user_name ? user.user_name : "-")), /* @__PURE__ */ React101.createElement("button", { type: "button", onClick: () => handleInvite(user), className: "lk-button lk-chat-form-button" + (invitedUsers.includes(user.user_id) ? " invited" : "") }, invitedUsers.includes(user.user_id) ? "Invited" : "Invite"));
   })) : "") : /* @__PURE__ */ React101.createElement(React101.Fragment, null));
 }
 
@@ -4778,7 +4778,6 @@ function CallUser(_a) {
   }, []);
   function usersList2() {
     return __async(this, null, function* () {
-      console.log(CHAT_SERVER_URL);
       const response = yield fetch(`${CHAT_SERVER_URL}/api/user/all-contact`, {
         method: "POST",
         headers: {
@@ -5080,7 +5079,7 @@ function CallUser(_a) {
       },
       "Invite"
     )))))), activeTab == "contacts" && /* @__PURE__ */ React114.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef }, filteredContacts.map((user, index) => {
-      return /* @__PURE__ */ React114.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React114.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-")), /* @__PURE__ */ React114.createElement(
+      return /* @__PURE__ */ React114.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React114.createElement("div", { style: { width: "100%" } }, /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name), /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : user.user_name ? user.user_name : "-")), /* @__PURE__ */ React114.createElement(
         "button",
         {
           disabled: invitedUsers.includes(user.user_id),
@@ -5095,7 +5094,7 @@ function CallUser(_a) {
         invitedUsers.includes(user.user_id) ? "Invited" : "Call"
       ));
     })), activeTab == "callParticipants" && /* @__PURE__ */ React114.createElement("ul", { style: { height: "77vh", overflow: "scroll", display: "block" }, className: "lk-list lk-chat-messages", ref: ulRef2 }, filteredParticipants.map((user, index) => {
-      return /* @__PURE__ */ React114.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React114.createElement("div", { style: { width: "100%", display: "flex", flexDirection: "column" } }, /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : "-")));
+      return /* @__PURE__ */ React114.createElement("li", { key: index, className: "lk-chat-entry" }, /* @__PURE__ */ React114.createElement("div", { style: { width: "100%", display: "flex", flexDirection: "column" } }, /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body text-ellipsis" }, user.full_name, " ", room.localParticipant.identity == user.user_id ? " (me)" : ""), /* @__PURE__ */ React114.createElement("span", { className: "lk-message-body lk-message-text text-ellipsis" }, user.designation ? user.designation : user.user_name ? user.user_name : "-")));
     })))
   );
 }
