@@ -4238,6 +4238,7 @@ function ShareLink(_a2) {
   const { showToast, setShowToast } = useToast();
   const [inviteVia, setInviteVia] = React123.useState("chat");
   const [invitedUsers, setInvitedUsers] = React123.useState([]);
+  const [allowOutsideInvites, setAllowOutsideInvites] = React123.useState(false);
   function showInviteVia(type) {
     setInviteVia(type);
   }
@@ -4379,7 +4380,38 @@ function ShareLink(_a2) {
   React123.useEffect(() => {
     setSearched(users);
   }, [inviteVia]);
-  return /* @__PURE__ */ React123.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), !isCallScreen ? /* @__PURE__ */ React123.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React123.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")) : /* @__PURE__ */ React123.createElement(React123.Fragment, null), showToast ? /* @__PURE__ */ React123.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React123.createElement(React123.Fragment, null), /* @__PURE__ */ React123.createElement("div", { className: "tl-invite-buttons" }, /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "chat", onClick: () => showInviteVia("chat") }, "Contact"), /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "phone", onClick: () => showInviteVia("phone") }, "Phone"), /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "email", onClick: () => showInviteVia("email") }, "Email")), /* @__PURE__ */ React123.createElement(InviteViaPhone, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "phone" ? "block" : "none" } }), /* @__PURE__ */ React123.createElement(InviteViaEmail, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "email" ? "block" : "none" } }), inviteVia === "chat" ? /* @__PURE__ */ React123.createElement(React123.Fragment, null, showInviteUser ? /* @__PURE__ */ React123.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React123.createElement(
+  function checkAllowedOutside() {
+    return __async(this, null, function* () {
+      const data = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          meeting_id: room.name,
+          domain: getDomainIdentifier()
+        })
+      };
+      try {
+        const response = yield fetch(`${getHostUrl()}/api/check-allowed-outside`, data);
+        if (response.ok) {
+          const result = yield response.json();
+          setAllowOutsideInvites(result.allowed);
+        } else {
+          setAllowOutsideInvites(false);
+        }
+      } catch (error) {
+        console.error("Error checking outside invites:", error);
+        setAllowOutsideInvites(false);
+      }
+    });
+  }
+  React123.useEffect(() => {
+    if (room.name) {
+      checkAllowedOutside();
+    }
+  }, [room.name]);
+  return /* @__PURE__ */ React123.createElement("div", __spreadProps(__spreadValues({}, props), { className: "lk-chat lk-sharelink" }), !isCallScreen && allowOutsideInvites && /* @__PURE__ */ React123.createElement("form", { className: "lk-chat-form" }, /* @__PURE__ */ React123.createElement("input", { className: "lk-form-control lk-chat-form-input", type: "text", value: link, readOnly: true }), /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", onClick: handleCopy }, "Copy")), showToast ? /* @__PURE__ */ React123.createElement(Toast, { className: "lk-toast-connection-state" }, "Copied") : /* @__PURE__ */ React123.createElement(React123.Fragment, null), /* @__PURE__ */ React123.createElement("div", { className: "tl-invite-buttons" }, /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "chat", onClick: () => showInviteVia("chat") }, "Contact"), allowOutsideInvites && /* @__PURE__ */ React123.createElement(React123.Fragment, null, /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "phone", onClick: () => showInviteVia("phone") }, "Phone"), /* @__PURE__ */ React123.createElement("button", { type: "button", className: "lk-button lk-chat-form-button", "aria-pressed": inviteVia === "email", onClick: () => showInviteVia("email") }, "Email"))), allowOutsideInvites && /* @__PURE__ */ React123.createElement(React123.Fragment, null, /* @__PURE__ */ React123.createElement(InviteViaPhone, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "phone" ? "block" : "none" } }), /* @__PURE__ */ React123.createElement(InviteViaEmail, { link, room_name: room.name, participant: participantName, isCallScreen, style: { "display": inviteVia === "email" ? "block" : "none" } })), inviteVia === "chat" ? /* @__PURE__ */ React123.createElement(React123.Fragment, null, showInviteUser ? /* @__PURE__ */ React123.createElement("form", { className: "lk-chat-form", onSubmit: handleSubmit }, /* @__PURE__ */ React123.createElement(
     "input",
     {
       className: "lk-form-control lk-chat-form-input",
