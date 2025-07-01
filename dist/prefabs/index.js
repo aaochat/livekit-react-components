@@ -8637,7 +8637,7 @@ function RecordingControls({ onRecordingChange }) {
       },
       className: "lk-recording-button"
     },
-    "Snapshot"
+    "Image Recording"
   )), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(
     "button",
     {

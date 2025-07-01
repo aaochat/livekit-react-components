@@ -4424,7 +4424,7 @@ function RecordingControls({ onRecordingChange }) {
       },
       className: "lk-recording-button"
     },
-    "Snapshot"
+    "Image Recording"
   )), /* @__PURE__ */ React111.createElement("li", null, /* @__PURE__ */ React111.createElement(
     "button",
     {
