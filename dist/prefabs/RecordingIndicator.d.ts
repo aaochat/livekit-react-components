@@ -1,3 +1,7 @@
 import React from 'react';
-export default function RecordingIndicator(): React.JSX.Element;
+interface RecordingIndicatorProps {
+    recordingStartTime: string | null;
+}
+export default function RecordingIndicator({ recordingStartTime }: RecordingIndicatorProps): React.JSX.Element;
+export {};
 //# sourceMappingURL=RecordingIndicator.d.ts.map

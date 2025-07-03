@@ -9273,8 +9273,27 @@ function RecordingControls({ onRecordingChange }) {
 
 // src/prefabs/RecordingIndicator.tsx
 var import_react6 = __toESM(require("react"));
-function RecordingIndicator() {
-  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "lk-recording" }, "\u{1F534} Recording");
+function RecordingIndicator({ recordingStartTime }) {
+  const [elapsedSeconds, setElapsedSeconds] = (0, import_react6.useState)(0);
+  (0, import_react6.useEffect)(() => {
+    if (!recordingStartTime) return;
+    const startTimestamp = new Date(recordingStartTime).getTime();
+    const updateElapsed = () => {
+      const now = Date.now();
+      const elapsed = Math.floor((now - startTimestamp) / 1e3);
+      setElapsedSeconds(elapsed);
+    };
+    updateElapsed();
+    const interval = setInterval(updateElapsed, 1e3);
+    return () => clearInterval(interval);
+  }, [recordingStartTime]);
+  const formatTime = (totalSeconds) => {
+    const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor(totalSeconds % 3600 / 60)).padStart(2, "0");
+    const seconds = String(totalSeconds % 60).padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  };
+  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "lk-recording" }, /* @__PURE__ */ import_react6.default.createElement("span", null, "\u{1F534}"), /* @__PURE__ */ import_react6.default.createElement("span", null, formatTime(elapsedSeconds)));
 }
 
 // src/prefabs/ControlBar.tsx
@@ -9302,6 +9321,7 @@ function ControlBar(_a2) {
   const [isShareLinkOpen, setIsShareLinkOpen] = React134.useState(false);
   const [isUserOpen, setIsUserOpen] = React134.useState(false);
   const [isRecording, setIsRecording] = React134.useState(false);
+  const [recordingStartTime, setRecordingStartTime] = React134.useState(null);
   const { state } = useLayoutContext().widget;
   const room = useRoomContext();
   React134.useEffect(() => {
@@ -9310,6 +9330,11 @@ function ControlBar(_a2) {
         const parsed = JSON.parse(room.metadata);
         const recordingActive = parsed.recordingStarted === true;
         setIsRecording(recordingActive);
+        if (recordingActive && parsed.recording_start_time) {
+          setRecordingStartTime(parsed.recording_start_time);
+        } else {
+          setRecordingStartTime(null);
+        }
       } catch (err) {
         console.error("Failed to parse room metadata:", err);
       }
@@ -9461,7 +9486,7 @@ function ControlBar(_a2) {
       title: sharescreenTitle
     },
     showText && (isScreenShareEnabled ? "Stop screen share" : "Share screen")
-  ), isHost && (visibleControls.sharelink || visibleControls.users) && /* @__PURE__ */ React134.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isRecording && /* @__PURE__ */ React134.createElement(RecordingIndicator, null), visibleControls.chat && /* @__PURE__ */ React134.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React134.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React134.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React134.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React134.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React134.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React134.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React134.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React134.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React134.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React134.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React134.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React134.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React134.createElement(
+  ), isHost && (visibleControls.sharelink || visibleControls.users) && /* @__PURE__ */ React134.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isRecording && recordingStartTime && /* @__PURE__ */ React134.createElement(RecordingIndicator, { recordingStartTime }), visibleControls.chat && /* @__PURE__ */ React134.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React134.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React134.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React134.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React134.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React134.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React134.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React134.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React134.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React134.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React134.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React134.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React134.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React134.createElement(
     HostEndMeetingMenu,
     {
       leave: visibleControls.leave,
