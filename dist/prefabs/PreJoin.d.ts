@@ -23,6 +23,7 @@ export interface PreJoinProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
     micLabel?: string;
     camLabel?: string;
     userLabel?: string;
+    isValidDomain?: boolean;
     /**
      * If true, user choices are persisted across sessions.
      * @defaultValue true
@@ -53,5 +54,5 @@ export declare function usePreviewDevice<T extends LocalVideoTrack | LocalAudioT
  * ```
  * @public
  */
-export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, joinLabel, micLabel, camLabel, userLabel, persistUserChoices, ...htmlProps }: PreJoinProps): React.JSX.Element;
+export declare function PreJoin({ defaults, onValidate, onSubmit, onError, debug, isValidDomain, joinLabel, micLabel, camLabel, userLabel, persistUserChoices, ...htmlProps }: PreJoinProps): React.JSX.Element;
 //# sourceMappingURL=PreJoin.d.ts.map
