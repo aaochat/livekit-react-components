@@ -3633,6 +3633,7 @@ function PreJoin(_a) {
     onSubmit,
     onError,
     debug,
+    isValidDomain,
     joinLabel = "Join Room",
     micLabel = "Microphone",
     camLabel = "Camera",
@@ -3644,6 +3645,7 @@ function PreJoin(_a) {
     "onSubmit",
     "onError",
     "debug",
+    "isValidDomain",
     "joinLabel",
     "micLabel",
     "camLabel",
@@ -3739,8 +3741,8 @@ function PreJoin(_a) {
       audioDeviceId
     };
     setUserChoices(newUserChoices);
-    setIsValid(handleValidation(newUserChoices));
-  }, [username, videoEnabled, handleValidation, audioEnabled, audioDeviceId, videoDeviceId]);
+    setIsValid(handleValidation(newUserChoices) && isValidDomain);
+  }, [username, videoEnabled, handleValidation, audioEnabled, audioDeviceId, videoDeviceId, isValidDomain]);
   function handleSubmit(event) {
     event.preventDefault();
     if (handleValidation(userChoices)) {
