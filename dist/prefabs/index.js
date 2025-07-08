@@ -1800,37 +1800,30 @@ var SvgLockLockedIcon = (props) => /* @__PURE__ */ React50.createElement("svg", 
 ));
 var LockLockedIcon_default = SvgLockLockedIcon;
 
-// src/assets/icons/MicIcon.tsx
-var React51 = __toESM(require("react"));
-var SvgMicIcon = (props) => /* @__PURE__ */ React51.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentColor" }, props), /* @__PURE__ */ React51.createElement(
-  "path",
-  {
-    fillRule: "evenodd",
-    d: "M2.975 8.002a.5.5 0 0 1 .547.449 4.5 4.5 0 0 0 8.956 0 .5.5 0 1 1 .995.098A5.5 5.5 0 0 1 8.5 13.478V15h2a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h2v-1.522a5.5 5.5 0 0 1-4.973-4.929.5.5 0 0 1 .448-.547",
-    clipRule: "evenodd"
-  }
-), /* @__PURE__ */ React51.createElement("path", { d: "M5 3a3 3 0 1 1 6 0v5a3 3 0 0 1-6 0z" }));
-var MicIcon_default = SvgMicIcon;
-
 // src/assets/icons/QualityExcellentIcon.tsx
-var React52 = __toESM(require("react"));
-var SvgQualityExcellentIcon = (props) => /* @__PURE__ */ React52.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React52.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React52.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }));
+var React51 = __toESM(require("react"));
+var SvgQualityExcellentIcon = (props) => /* @__PURE__ */ React51.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React51.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React51.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }));
 var QualityExcellentIcon_default = SvgQualityExcellentIcon;
 
 // src/assets/icons/QualityGoodIcon.tsx
-var React53 = __toESM(require("react"));
-var SvgQualityGoodIcon = (props) => /* @__PURE__ */ React53.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React53.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React53.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
+var React52 = __toESM(require("react"));
+var SvgQualityGoodIcon = (props) => /* @__PURE__ */ React52.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React52.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React52.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React52.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React52.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React52.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
 var QualityGoodIcon_default = SvgQualityGoodIcon;
 
 // src/assets/icons/QualityPoorIcon.tsx
-var React54 = __toESM(require("react"));
-var SvgQualityPoorIcon = (props) => /* @__PURE__ */ React54.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React54.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React54.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React54.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React54.createElement("path", { d: "M6 6.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React54.createElement("path", { d: "M6 6.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React54.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
+var React53 = __toESM(require("react"));
+var SvgQualityPoorIcon = (props) => /* @__PURE__ */ React53.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentcolor" }, props), /* @__PURE__ */ React53.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React53.createElement("path", { d: "M6 6.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("path", { d: "M6 6.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React53.createElement("path", { d: "M12 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
 var QualityPoorIcon_default = SvgQualityPoorIcon;
 
 // src/assets/icons/QualityUnknownIcon.tsx
-var React55 = __toESM(require("react"));
-var SvgQualityUnknownIcon = (props) => /* @__PURE__ */ React55.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentColor" }, props), /* @__PURE__ */ React55.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React55.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React55.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
+var React54 = __toESM(require("react"));
+var SvgQualityUnknownIcon = (props) => /* @__PURE__ */ React54.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16, fill: "currentColor" }, props), /* @__PURE__ */ React54.createElement("g", { opacity: 0.25 }, /* @__PURE__ */ React54.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" }), /* @__PURE__ */ React54.createElement("path", { d: "M0 11.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm6-6a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5z" })));
 var QualityUnknownIcon_default = SvgQualityUnknownIcon;
+
+// src/assets/icons/RecordingIcon.tsx
+var React55 = __toESM(require("react"));
+var SvgRecordingIcon = (props) => /* @__PURE__ */ React55.createElement("svg", __spreadValues({ xmlns: "http://www.w3.org/2000/svg", width: 16, height: 16 }, props), /* @__PURE__ */ React55.createElement("circle", { cx: 8, cy: 8, r: 6, fill: "currentColor" }));
+var RecordingIcon_default = SvgRecordingIcon;
 
 // src/assets/icons/ScreenShareIcon.tsx
 var React56 = __toESM(require("react"));
@@ -2163,7 +2156,7 @@ var MicDisabledIcon_default = SvgMicDisabledIcon;
 
 // src/assets/icons/tl/MicIcon.tsx
 var React63 = __toESM(require("react"));
-var SvgMicIcon2 = (props) => /* @__PURE__ */ React63.createElement(
+var SvgMicIcon = (props) => /* @__PURE__ */ React63.createElement(
   "svg",
   __spreadValues({
     width: 18,
@@ -2223,7 +2216,7 @@ var SvgMicIcon2 = (props) => /* @__PURE__ */ React63.createElement(
     }
   )
 );
-var MicIcon_default2 = SvgMicIcon2;
+var MicIcon_default = SvgMicIcon;
 
 // src/assets/icons/tl/ApproveIcon.tsx
 var React64 = __toESM(require("react"));
@@ -2298,7 +2291,7 @@ var UsersIcon_default = SvgUserIcon;
 function getSourceIcon(source, enabled) {
   switch (source) {
     case import_livekit_client9.Track.Source.Microphone:
-      return enabled ? /* @__PURE__ */ React68.createElement(MicIcon_default2, null) : /* @__PURE__ */ React68.createElement(MicDisabledIcon_default, null);
+      return enabled ? /* @__PURE__ */ React68.createElement(MicIcon_default, null) : /* @__PURE__ */ React68.createElement(MicDisabledIcon_default, null);
     case import_livekit_client9.Track.Source.Camera:
       return enabled ? /* @__PURE__ */ React68.createElement(CameraIcon_default, null) : /* @__PURE__ */ React68.createElement(CameraDisabledIcon_default, null);
     case import_livekit_client9.Track.Source.ScreenShare:
@@ -8662,7 +8655,7 @@ function RecordingControls({ onRecordingChange }) {
       },
       ref: buttonRef
     },
-    isLoading ? "Processing..." : /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement(MicIcon_default, null), isRecording ? "Stop Recording" : "Start Recording"),
+    isLoading ? "Processing..." : /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement(RecordingIcon_default, { color: isRecording ? "red" : "green" }), isRecording ? "Stop Recording" : "Start Recording"),
     /* @__PURE__ */ import_react5.default.createElement(Chevron_default, { className: "lk-recording-arrow" })
   ));
 }
@@ -8689,7 +8682,7 @@ function RecordingIndicator({ recordingStartTime }) {
     const seconds = String(totalSeconds % 60).padStart(2, "0");
     return `${hours}:${minutes}:${seconds}`;
   };
-  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "lk-recording" }, /* @__PURE__ */ import_react6.default.createElement("span", null, "\u{1F534}"), /* @__PURE__ */ import_react6.default.createElement("span", null, formatTime(elapsedSeconds)));
+  return /* @__PURE__ */ import_react6.default.createElement("div", { className: "lk-recording" }, /* @__PURE__ */ import_react6.default.createElement("span", null, /* @__PURE__ */ import_react6.default.createElement(RecordingIcon_default, { color: "red" })), /* @__PURE__ */ import_react6.default.createElement("span", null, formatTime(elapsedSeconds)));
 }
 
 // src/prefabs/ControlBar.tsx
@@ -8779,6 +8772,7 @@ function ControlBar(_a2) {
   );
   const urlParams = new URLSearchParams(window.location.search);
   const isHost = urlParams.has("token");
+  const isMeeting = window.location.pathname.includes("meeting");
   const browserSupportsScreenSharing = (0, import_components_core47.supportsScreenSharing)();
   const [isScreenShareEnabled, setIsScreenShareEnabled] = React113.useState(false);
   const onScreenShareChange = React113.useCallback(
@@ -8882,7 +8876,7 @@ function ControlBar(_a2) {
       title: sharescreenTitle
     },
     showText && (isScreenShareEnabled ? "Stop screen share" : "Share screen")
-  ), isHost && (visibleControls.sharelink || visibleControls.users) && /* @__PURE__ */ React113.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isRecording && recordingStartTime && /* @__PURE__ */ React113.createElement(RecordingIndicator, { recordingStartTime }), visibleControls.chat && /* @__PURE__ */ React113.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React113.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React113.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React113.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React113.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React113.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React113.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(
+  ), isHost && isMeeting && (visibleControls.sharelink || visibleControls.users) && /* @__PURE__ */ React113.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isMeeting && isRecording && recordingStartTime && /* @__PURE__ */ React113.createElement(RecordingIndicator, { recordingStartTime }), visibleControls.chat && /* @__PURE__ */ React113.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React113.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React113.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React113.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React113.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React113.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React113.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(
     HostEndMeetingMenu,
     {
       leave: visibleControls.leave,
