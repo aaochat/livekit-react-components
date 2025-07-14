@@ -4822,7 +4822,7 @@ function RecordingControls({ onRecordingChange }) {
     if (room == null ? void 0 : room.metadata) {
       try {
         const parsed = JSON.parse(room.metadata);
-        const recordingActive = parsed.recordingStarted === true;
+        const recordingActive = parsed.recording_started === true;
         setIsRecording(recordingActive);
         onRecordingChange == null ? void 0 : onRecordingChange(recordingActive);
       } catch (err) {
