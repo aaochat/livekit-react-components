@@ -147,8 +147,8 @@ export function ControlBar({
     [variation],
   );
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const isHost = urlParams.has('token');
+  // const urlParams = new URLSearchParams(window.location.search);
+  // const isHost = urlParams.has('token');
   const isMeeting = window.location.pathname.includes('meeting');
   const browserSupportsScreenSharing = supportsScreenSharing();
 
@@ -289,7 +289,7 @@ export function ControlBar({
           {showText && (isScreenShareEnabled ? 'Stop screen share' : 'Share screen')}
         </TrackToggle>
       )}
-      {isHost && isMeeting && (visibleControls.sharelink || visibleControls.users) && (
+      {isMeeting && (visibleControls.endForAll) && (
         <RecordingControls onRecordingChange={(val) => setIsRecording(val)} />
       )}
 
