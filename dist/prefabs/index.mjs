@@ -4325,7 +4325,7 @@ function RecordingControls({ onRecordingChange }) {
     if (room == null ? void 0 : room.metadata) {
       try {
         const parsed = JSON.parse(room.metadata);
-        const recordingActive = parsed.recordingStarted === true;
+        const recordingActive = parsed.recording_started === true;
         setIsRecording(recordingActive);
         onRecordingChange == null ? void 0 : onRecordingChange(recordingActive);
       } catch (err) {
@@ -4506,7 +4506,7 @@ function ControlBar(_a) {
     if (room == null ? void 0 : room.metadata) {
       try {
         const parsed = JSON.parse(room.metadata);
-        const recordingActive = parsed.recordingStarted === true;
+        const recordingActive = parsed.recording_started === true;
         setIsRecording(recordingActive);
         if (recordingActive && parsed.recording_start_time) {
           setRecordingStartTime(parsed.recording_start_time);
@@ -4559,8 +4559,6 @@ function ControlBar(_a) {
     () => variation === "textOnly" || variation === "verbose",
     [variation]
   );
-  const urlParams = new URLSearchParams(window.location.search);
-  const isHost = urlParams.has("token");
   const isMeeting = window.location.pathname.includes("meeting");
   const browserSupportsScreenSharing = supportsScreenSharing();
   const [isScreenShareEnabled, setIsScreenShareEnabled] = React113.useState(false);
@@ -4665,7 +4663,7 @@ function ControlBar(_a) {
       title: sharescreenTitle
     },
     showText && (isScreenShareEnabled ? "Stop screen share" : "Share screen")
-  ), isHost && isMeeting && (visibleControls.sharelink || visibleControls.users) && /* @__PURE__ */ React113.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isMeeting && isRecording && recordingStartTime && /* @__PURE__ */ React113.createElement(RecordingIndicator, { recordingStartTime }), visibleControls.chat && /* @__PURE__ */ React113.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React113.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React113.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React113.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React113.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React113.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React113.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(
+  ), isMeeting && visibleControls.endForAll && /* @__PURE__ */ React113.createElement(RecordingControls, { onRecordingChange: (val) => setIsRecording(val) }), isMeeting && isRecording && recordingStartTime && /* @__PURE__ */ React113.createElement(RecordingIndicator, { recordingStartTime }), visibleControls.chat && /* @__PURE__ */ React113.createElement(ChatToggle, null, showIcon && /* @__PURE__ */ React113.createElement(ChatIcon_default, null), showText && "Chat", state && state.unreadMessages !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, state.unreadMessages < 10 ? state.unreadMessages.toFixed(0) : "9+")), visibleControls.sharelink && /* @__PURE__ */ React113.createElement(ShareLinkToggle, null, showIcon && /* @__PURE__ */ React113.createElement(InviteIcon_default, null), showText && "Invite"), visibleControls.users && /* @__PURE__ */ React113.createElement(UserToggle, null, showIcon && /* @__PURE__ */ React113.createElement(UsersIcon_default, null), showText && "Participants", waitingRoomCount !== 0 && /* @__PURE__ */ React113.createElement("span", { className: "waiting-count" }, waitingRoomCount)), showExtraSettingMenu && /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(ExtraOptionMenu, { blurEnabled: false, shareScreenTracks: screenShareTracks }))), visibleControls.endForAll ? /* @__PURE__ */ React113.createElement("div", { className: "tl-leave lk-button-group" }, /* @__PURE__ */ React113.createElement("div", { className: "tl-leave-btn lk-button-group-menu" }, /* @__PURE__ */ React113.createElement(
     HostEndMeetingMenu,
     {
       leave: visibleControls.leave,
